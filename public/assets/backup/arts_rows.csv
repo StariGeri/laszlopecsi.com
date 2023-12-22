@@ -1,0 +1,3 @@
+id,title,year,isAvailable,dimensions,type,material,images
+3,"{""en"":""Five rhytms"",""hu"":""Öt ritmus""}",1970,true,"{""x"":75,""y"":130}","{""en"":""Experimental artpiece"",""hu"":""Kísérletezéses mű""}","{""en"":""wool thread"",""hu"":""gyapjú string""}","[""test1.JPG"",""test2.JPG""]"
+4,"{""en"":""Variation 55"",""hu"":""Variáció 55""}",1978,true,"{""x"":120,""y"":160}","{""en"":""fali textil"",""hu"":""wall textile""}","{""en"":""string"",""hu"":""fonal""}","[""test3.JPG"",""test4.JPG""]"
