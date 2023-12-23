@@ -1,5 +1,3 @@
-import { TFunction } from "i18next";
-
 const Footer = () => {
 
     return (

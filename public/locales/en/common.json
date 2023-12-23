@@ -1,11 +1,19 @@
 {
-  
   "language": "EN",
 
-
   "navHome": "Home",
-  "navArtist": "Artist",
-  "navCollection": "Collection",
-  "navContact": "Contact"
+  "navAthl": "Athletes / Mentors",
+  "navSupport": "Support Us",
+  "navNews": "News",
+  "navConnect": "Get in touch!",
+
+  "footerOverview": "Quick Overview",
+  "footerHome": "Home",
+  "footerInformation": "Information",
+  "footerAthMen": "Athletes / Mentors",
+  "footerSupport": "Support Us",
+  "footerNews": "News",
+  "footerConnect": "Connect",
+  "footerRights": "All rights reserved"
 
 }

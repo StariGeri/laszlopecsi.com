@@ -4,7 +4,6 @@ import HamburgerMenu from "./HamburgerMenu";
 import MobileNav from "./MobileNav";
 import NavItems from "./NavItems";
 import { useHeader } from "@/hooks/useHeader";
-import { TFunction } from "i18next";
 
 const Header = () => {
 

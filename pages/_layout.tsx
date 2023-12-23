@@ -1,7 +1,5 @@
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 
 export interface LayoutProps {
@@ -15,8 +13,6 @@ export interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
 
-    const { t } = useTranslation('common');
-
     return (
         <div className=''>
             <Header />
@@ -27,14 +23,6 @@ const Layout = ({ children }: LayoutProps) => {
         </div>
     );
 };
-
-export async function getStaticProps({ locale }: { locale: string }) {
-    return {
-        props: {
-            ...(await serverSideTranslations(locale, ['common'])),
-        },
-    };
-}
 
 
 export default Layout;

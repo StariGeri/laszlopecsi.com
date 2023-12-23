@@ -1,4 +1,4 @@
-export default function ArtistPage() {
+const ArtistPage = () => {
 
 
     return (
@@ -7,3 +7,5 @@ export default function ArtistPage() {
         </div>
     );
 }
+
+export default ArtistPage;

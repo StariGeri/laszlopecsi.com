@@ -1,8 +1,9 @@
+import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 
 export const useLanguageDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('EN');
+  const { locale, locales } = useRouter();
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -20,10 +21,5 @@ export const useLanguageDropdown = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [dropdownRef]);
 
-  const changeLanguage = (lang:string) => {
-    setSelectedLanguage(lang); // Call the passed function with the new language
-    setIsOpen(false); // Close the dropdown
-  };
-
-  return { toggleDropdown, dropdownRef, isOpen, changeLanguage,selectedLanguage };
+  return { toggleDropdown, dropdownRef, isOpen, setIsOpen, locale, locales };
 };
