@@ -37,8 +37,8 @@ const MobileNav = () => {
                     <motion.div
                         className='socialIcons flex flex-col items-end justify-end gap-5 mt-auto mb-5'
                         variants={menuItemVariants}>
-                        <FacebookIcon />
-                        <InstagramIcon />
+                        <FacebookIcon isOutlined={false} color='dark' />
+                        <InstagramIcon isOutlined={false} color='dark' />
                     </motion.div>
                 </div>
             </div>

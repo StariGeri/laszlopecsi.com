@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        'header': ['"Playfair Display"', 'serif'],
-        'body': ['"EB Garamond"', 'serif'],
+        'header': ['"Playfair Display"'],
+        'body': ['"EB Garamond"'],
       },
       colors: {
         'primaryOrange': '#FF5C0A',
