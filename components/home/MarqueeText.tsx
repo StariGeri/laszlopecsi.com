@@ -1,33 +1,35 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { useScroll, useTransform, motion } from 'framer-motion';
 
-const MarqueeText = () => {
+interface MarqueeTextProps {
+    direction: 'left' | 'right';
+}
 
-    const stringArray = ['Gobelin', 'Industrial Art', 'Textile', 'Gobelin', 'Industrial Art', 'Textile'];
+const MarqueeText = ({ direction }: MarqueeTextProps) => {
+    const stringArray = ['Gobelin', 'Industrial Art', 'Textile', 'Gobelin', 'Industrial Art', 'Textile', 'Gobelin', 'Industrial Art', 'Textile'];
+    const extendedArray = Array(5).fill(stringArray).flat(); // Extend the array to cover full width
+    const { scrollYProgress } = useScroll();
 
-    const duration = stringArray.length * 2;
+    // Determine the initial and final positions based on direction
+    const initialPosition = direction === 'right' ? -extendedArray.length * 10 : 0;
+    const finalPosition = direction === 'left' ? -extendedArray.length * 10 : extendedArray.length * 10;
 
-    const marqueeVariants = {
-        animate: {
-            x: [0, -100 * stringArray.length],
-            transition: {
-                x: {
-                    repeat: Infinity,
-                    duration: duration,
-                    ease: "linear"
-                }
-            }
-        }
-    };
+    // Adjust the range of xPosition to control movement
+    const xPosition = useTransform(scrollYProgress, [0, 1], [initialPosition, finalPosition]);
 
     return (
-        <motion.div className="overflow-hidden whitespace-nowrap" variants={marqueeVariants} animate="animate">
-            {stringArray.map((string, index) => (
-                <span key={index} className="mx-4">{string}</span>
+        <div className="w-full overflow-hidden flex gap-8 my-5">
+            {extendedArray.map((string, index) => (
+                <motion.div 
+                    key={index} 
+                    className="flex items-center gap-3"
+                    style={{ x: xPosition, transition: 'transform 0.6s linear' }}>
+                    <p className="text-[60px] font-header font-bold opacity-80 text-nowrap">{string}</p>
+                    <div className='w-2 h-2 rounded-full bg-primaryOrange bg-opacity-30'></div>
+                </motion.div>
             ))}
-        </motion.div>
+        </div>
     );
 };
 
 export default MarqueeText;
-

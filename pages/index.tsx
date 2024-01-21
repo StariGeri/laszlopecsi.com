@@ -1,8 +1,10 @@
+import MarqueeText from "@/components/home/MarqueeText";
 
 const Home =() => {
   return (
-    <main>
-      Hello Homepage!!
+    <main className="h-screen">
+      <MarqueeText direction="left"/>
+      <MarqueeText direction="right"/>
     </main>
   )
 }
