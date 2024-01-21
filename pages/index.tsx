@@ -4,7 +4,6 @@ const Home =() => {
   return (
     <main className="h-screen">
       <MarqueeText direction="left"/>
-      <MarqueeText direction="right"/>
     </main>
   )
 }

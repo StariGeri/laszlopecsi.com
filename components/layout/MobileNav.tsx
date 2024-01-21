@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useActiveLink } from '@/hooks/useActiveLink';
 import FacebookIcon from '../shared/FacebookIcon';
 import InstagramIcon from '../shared/InstagramIcon';
-import LanguageDropdown from '../shared/LanguageDropdown';
 import { MenuItems } from '@/constants/Menu';
 
 
@@ -18,9 +17,9 @@ const MobileNav = () => {
             initial="initial"
             animate="enter"
             exit="exit"
-            className='h-screen w-screen bg-background fixed right-0 top-0 shadow-lg'
+            className='h-screen w-screen bg-background fixed right-0 top-0 shadow-lg z-10'
         >
-            <div className='box-border h-full p-[10px] flex flex-col justify-between'>
+            <div className='box-border h-full p-[10px] flex flex-col justify-between z-10'>
                 <div className='h-full flex flex-col text-[22px] p-6 mt-8'>
                     <ul>
                         {MenuItems.map((item, index) => (
