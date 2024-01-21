@@ -11,7 +11,10 @@ const Slide = ({ slide }: SlideProps) => {
         <div className="w-full h-full flex flex-col items-center justify-center bg-blue-300">
             <h3 className="text-xl font-semibold">{slide.title}</h3>
             <p className="text-base">{slide.content}</p>
-            <Image src={`/public/dummy/${slide.image}`} alt={slide.title} width={300} height={300} />
+            {/* Adjust the layout based on the parent's width */}
+            <div className="relative w-full max-w-sm mx-auto">
+                <Image src={`/public/dummy/${slide.image}`} alt={slide.title} layout="responsive" width={300} height={300} />
+            </div>
         </div>
     );
 }
