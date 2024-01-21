@@ -25,6 +25,15 @@ const Carousel = ({ items }: CarouselProps) => {
                 </div>
             </div>
             <button onClick={goNext} className="absolute right-0 z-10 p-4">→</button>
+            <div className="absolute bottom-0 w-full flex justify-center p-4">
+                {items.map((item, index) => (
+                    <span
+                        key={item.id}
+                        className={`h-2 w-2 mx-1 rounded-full ${index === activeIndex ? 'bg-white' : 'bg-gray-400'} transition duration-300`}
+                        onClick={() => setActiveIndex(index)}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
