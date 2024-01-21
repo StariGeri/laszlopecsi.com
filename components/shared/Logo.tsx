@@ -13,7 +13,7 @@ const Logo = ({ theme, isFull }: LogoProps) => {
     return (
         <Link href='/' className='z-40' passHref>
             <div className='flex items-center justify-center cursor-pointer'>
-                <Image src='/assets/logos/darkLogo.svg' alt="Logo" width={200} height={200} className='w-8 h-8 md:w-10 md:h-10' />
+                <Image src={logo} alt="Logo" width={200} height={200} className='w-8 h-8 md:w-10 md:h-10' />
                 {isFull &&
                     <div className={`hidden md:flex flex-col ml-3 ${theme === 'dark' ? 'text-black' : 'text-white'}`}>
                         <h1 className='hidden md:block font-body font-semibold md:text-[20px] lg:text-[26px] leading-none'>Laszlo Pecsi</h1>
