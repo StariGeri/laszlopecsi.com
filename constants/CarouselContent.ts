@@ -7,7 +7,7 @@ export const CarouselContent: SlideModel[] = [
         title: "The Artist",
         content: "The artist is a Hungarian painter and graphic artist, who lives and works in Budapest. She graduated from the Hungarian University of Fine Arts in 2018. She has been a member of the Hungarian Association of Graphic Artists since 2019. She has been a member of the Association of Hungarian Creative Artists since 2020.",
         image: "test5.JPG",
-        location: "Budapest",
+        location: "Budapest, Hungary",
         year: 1995
     },
     {
@@ -15,7 +15,7 @@ export const CarouselContent: SlideModel[] = [
         title: "The Goat",
         content: "She has been a member of the Hungarian Association of Graphic Artists since 2019. She has been a member of the Association of Hungarian Creative Artists since 2020.",
         image: "test5.JPG",
-        location: "Budapest",
+        location: "Budapest, Hungary",
         year: 1995
     },
     {
@@ -23,7 +23,7 @@ export const CarouselContent: SlideModel[] = [
         title: "Apple Apple",
         content: "She has been a member of the Hungarian Association of Graphic Artists since 2019. She has been a member of the Association of Hungarian Creative Artists since 2020.",
         image: "test5.JPG",
-        location: "Budapest",
+        location: "Budapest, Hungary",
         year: 1995
     },
     {
@@ -31,7 +31,7 @@ export const CarouselContent: SlideModel[] = [
         title: "The test art",
         content: "She has been a member of the Hungarian Association of Graphic Artists since 2019. She has been a member of the Association of Hungarian Creative Artists since 2020.",
         image: "test5.JPG",
-        location: "Budapest",
+        location: "Budapest, Hungary",
         year: 1995
     }
 ]
