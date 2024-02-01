@@ -1,13 +1,15 @@
+import Hero from "@/components/home/Hero";
 import MarqueeText from "@/components/home/MarqueeText";
 import Carousel from "@/components/shared/carousel/Carousel";
 import { CarouselContent } from "@/constants/CarouselContent";
 
 const Home = () => {
   return (
-    <main className="min-h-screen h-fit px-3 md:px-0">
+    <div className="overflow-hidden px-3">
+      <Hero />
       <MarqueeText direction="left" />
-      <Carousel items={CarouselContent}/>
-    </main>
+      <Carousel items={CarouselContent} />
+    </div>
   )
 }
 

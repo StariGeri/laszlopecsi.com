@@ -34,7 +34,7 @@ const Carousel = ({ items }: CarouselProps) => {
                 </button>
             </div>
             {/**INDICATORS */}
-            <div className='flex justify-between w-full max-w-screen-md mx-auto'>
+            <div className='flex justify-between w-full max-w-[862px] mx-auto'>
                 <div className="w-fit flex items-center m-4 ml-0">
                     {items.map((item, index) => (
                         <span
@@ -52,7 +52,7 @@ const Carousel = ({ items }: CarouselProps) => {
                         <HiOutlineArrowNarrowRight className="text-white transition-transform duration-150 stroke-[2px] w-8 h-5 pt-1" />
                     </button>
                 </div>
-                <div className='hidden md:flex items-center m-4'>
+                <div className='hidden md:flex items-center my-4'>
                     <Button buttonText='Discover Collection' isOutlined={false} color='dark' href='/collection' />
                 </div>
             </div>

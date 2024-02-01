@@ -1,0 +1,45 @@
+// components/HeroSection.tsx
+import Image from 'next/image';
+import React from 'react';
+import Button from '../shared/Button';
+import FacebookIcon from '../shared/FacebookIcon';
+import InstagramIcon from '../shared/InstagramIcon';
+import { motion } from 'framer-motion';
+
+const HeroSection = () => {
+
+  return (
+    <div className="w-full max-w-[1240px] lg:mx-auto xl:grid xl:grid-cols-3 mt-8 md:gap-6 lg:gap-8 xl:gap-10">
+      <div className='flex flex-col justify-between'>
+        <h1 className='font-header font-semibold text-[26px] md:text-[35px] lg:text-[40px] text-balance leading-tight'>The Art Collection of <span className='text-primaryOrange'>Laszlo Pecsi</span></h1>
+        <p className='font-body font-normal text-base md:text-[20px] lg:text-[24px]'>A Journey Through Time and Texture: Exploring the Artistic Legacy of Laszlo Pecsi,
+          a Renowned Textile Artist of the 20th Century, and the Exclusive Opportunity to Acquire his Masterpieces
+        </p>
+        <div className='w-fit ml-auto'>
+          <Button buttonText='See More' color='dark' isOutlined={false} href='/artist' />
+        </div>
+      </div>
+      <Image src='/dummy/test3.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover xl:rounded-br-md hidden xl:block' />
+      <Image src='/dummy/test5.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover xl:rounded-bl-md hidden xl:block' />
+      <div className='xl:flex xl:items-end xl:gap-5 xl:pr-10'>
+        <div className='hidden xl:flex flex-col items-center justify-center gap-3'>
+          <FacebookIcon color='light' isOutlined={false} />
+          <InstagramIcon color='light' isOutlined={false} />
+          <div className='h-[76px] w-[2px] bg-black'></div>
+        </div>
+        <Image src='/dummy/test2.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto object-cover hidden xl:block' />
+      </div>
+      <Image src='/dummy/test1.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover hidden xl:block' />
+      <Image src='/dummy/test4.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover hidden xl:block' />
+      <div className='w-screen flex xl:hidden gap-3 overflow-x-scroll'>
+        <Image src='/dummy/test3.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
+        <Image src='/dummy/test5.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
+        <Image src='/dummy/test2.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
+        <Image src='/dummy/test1.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
+        <Image src='/dummy/test4.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
+      </div>
+    </div>
+  );
+};
+
+export default HeroSection;

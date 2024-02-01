@@ -11,18 +11,13 @@ export interface LayoutProps {
  *@returns - The main Layout
  */
 
-const Layout = ({ children }: LayoutProps) => {
-
+export default function Layout({ children }: LayoutProps) {
     return (
-        <div className=''>
-            <Header />
-            <div className='pt-[64px] md:pt-[72px] lg:pt-[78px]'>
-                {children}
-            </div>
-            <Footer />
-        </div>
-    );
-};
+      <>
+        <Header />
+        <main className='pt-[64px] md:pt-[72px] lg:pt-[78px]'>{children}</main>
+        <Footer />
+      </>
+    )
+  }
 
-
-export default Layout;
