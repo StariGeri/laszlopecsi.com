@@ -5,7 +5,7 @@ import { CarouselContent } from "@/constants/CarouselContent";
 
 const Home = () => {
   return (
-    <div className="overflow-hidden px-3">
+    <div className="overflow-hidden px-3 md:px-6 lg:px-10">
       <Hero />
       <MarqueeText direction="left" />
       <Carousel items={CarouselContent} />

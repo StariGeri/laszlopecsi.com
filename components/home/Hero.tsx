@@ -9,13 +9,13 @@ import { motion } from 'framer-motion';
 const HeroSection = () => {
 
   return (
-    <div className="w-full max-w-[1240px] lg:mx-auto xl:grid xl:grid-cols-3 mt-8 md:gap-6 lg:gap-8 xl:gap-10">
+    <div className="w-full max-w-[1240px] lg:mx-auto xl:grid xl:grid-cols-3 mt-2 md:mt-4 lg:mt-8 md:gap-6 lg:gap-8 xl:gap-10">
       <div className='flex flex-col justify-between'>
-        <h1 className='font-header font-semibold text-[26px] md:text-[35px] lg:text-[40px] text-balance leading-tight'>The Art Collection of <span className='text-primaryOrange'>Laszlo Pecsi</span></h1>
-        <p className='font-body font-normal text-base md:text-[20px] lg:text-[24px]'>A Journey Through Time and Texture: Exploring the Artistic Legacy of Laszlo Pecsi,
+        <h1 className='font-header font-semibold text-[26px] md:text-[35px] lg:text-[40px] text-balance leading-tight sm:text-center lg:text-left mb-2 md:mb-5 lg:mb-7'>The Art Collection of <span className='text-primaryOrange'>Laszlo Pecsi</span></h1>
+        <p className='font-body font-normal text-base md:text-[20px] lg:text-[24px] sm:text-center lg:text-left text-balance'>A Journey Through Time and Texture: Exploring the Artistic Legacy of Laszlo Pecsi,
           a Renowned Textile Artist of the 20th Century, and the Exclusive Opportunity to Acquire his Masterpieces
         </p>
-        <div className='w-fit ml-auto'>
+        <div className='w-fit ml-auto sm:mx-auto lg:mx-0 lg:ml-auto'>
           <Button buttonText='See More' color='dark' isOutlined={false} href='/artist' />
         </div>
       </div>
