@@ -18,7 +18,7 @@ const MarqueeText = ({ direction }: MarqueeTextProps) => {
     const xPosition = useTransform(scrollYProgress, [0, 1], [initialPosition, finalPosition]);
 
     return (
-        <div className="w-full overflow-hidden flex gap-5 my-5">
+        <div className="w-full overflow-hidden flex gap-5 mt-10 mb-8 md:my-12 lg:my-24">
             {extendedArray.map((string, index) => (
                 <motion.div 
                     key={index} 

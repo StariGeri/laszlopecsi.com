@@ -1,6 +1,5 @@
 import { useActiveLink } from "@/hooks/useActiveLink";
 import Link from "next/link";
-import LanguageDropdown from "../shared/LanguageDropdown";
 import { MenuItems } from "@/constants/Menu";
 
 

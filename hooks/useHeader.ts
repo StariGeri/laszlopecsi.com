@@ -17,7 +17,7 @@ export const useHeader = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // dwetermine if the user has scrolled
+  // determine if the user has scrolled
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);

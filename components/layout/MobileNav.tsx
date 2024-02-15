@@ -17,9 +17,9 @@ const MobileNav = () => {
             initial="initial"
             animate="enter"
             exit="exit"
-            className='h-full w-full bg-background fixed right-0 top-0 shadow-lg z-10'
+            className='h-screen w-screen bg-background absolute inset-0 shadow-lg z-10'
         >
-            <div className='box-border h-full p-[10px] flex flex-col justify-between z-10'>
+            <div className='box-border h-full bg-background p-[10px] flex flex-col justify-between z-10'>
                 <div className='h-full flex flex-col text-[22px] p-6 mt-8'>
                     <ul>
                         {MenuItems.map((item, index) => (
