@@ -11,7 +11,7 @@ const Header = () => {
 
     return (
         <div className={`fixed w-full px-3 md:px-5 z-20 ${isScrolled && 'bg-opacity-50 backdrop-filter backdrop-blur-md'}`}>
-            <div className="w-full max-w-[1240px] mx-auto flex items-center justify-between py-4">
+            <div className={`w-full max-w-[1240px] mx-auto flex items-center justify-between py-4 ${isScrolled ? 'border-none' : 'border-b border-black'}`}>
                 <Logo theme="dark" isFull />
                 <NavItems />
                 <HamburgerMenu onClick={handleMobileMenu} isOpen={isMobileMenuOpen} />
