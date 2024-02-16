@@ -1,10 +1,20 @@
 /** @type {import('next').NextConfig} */
 
-const { i18n } = require('./next-i18next.config');
+const { hostname } = require('os');
+
 
 const nextConfig = {
-  reactStrictMode: true,
-  i18n,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'vssapevldqrtycxdjgjt.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/artImages/collection/**',
+      },
+    ],
+  },
+
 };
 
 module.exports = nextConfig;

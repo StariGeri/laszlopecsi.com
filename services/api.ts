@@ -21,7 +21,7 @@ export const connectToSupabase = () => {
 export const fetchAllArt = async () => {
   const supabase = connectToSupabase();
 
-  const { data, error } = (await supabase.from('arts').select('*')) as { data: ArtModel[]; error: any };
+  const { data, error } = (await supabase.from('art').select('*')) as { data: ArtModel[]; error: any };
 
   if (error) throw error;
 
