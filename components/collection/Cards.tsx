@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDebounce } from '@uidotdev/usehooks';
 
 import { fetchAllArt, fetchArtCount } from "@/services/api";
@@ -33,8 +32,6 @@ const Cards = () => {
 
 // this function handles the fetching of the artpieces
     const fetchDataAsync = async () => {
-        console.log("Search term changed: " + debouncedSearchTerm);
-        console.log("current arts: " + JSON.stringify(arts));
         setNumberOfFiltereddArts(0);
 
         if (searchTerm !== '') {
@@ -46,9 +43,7 @@ const Cards = () => {
             const searchedArtCount = await fetchArtCount(debouncedSearchTerm);
             const searchedArts = await fetchAllArt(debouncedSearchTerm);
 
-            console.log("searched arts count: " + searchedArts.length);
             setArts(searchedArts);
-            console.log("number of all the matches: " + searchedArtCount);
             setNumberOfFiltereddArts(searchedArtCount);
 
         } catch (error) {
