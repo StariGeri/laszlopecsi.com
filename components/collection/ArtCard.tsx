@@ -19,7 +19,7 @@ const ArtCard = ({ art }: { art: ArtModel }) => {
 
             <div className='contentContainer w-full h-1/3 flex flex-col p-2 md:p-3 lg:p-4'>
                 <h1 className='font-body font-semibold text-lg md:text-xl lg:text-[26px]'>{art.title.en}</h1>
-                <p className='italic font-body font-medium text-base md:text-lg lg:text-[20px]'>{art.year}</p>
+                <p className='italic font-body font-medium text-base md:text-lg lg:text-[20px]'>{art.year ? art.year : 'Unknown'}</p>
                 <div className='w-full flex items-center justify-end sm:justify-between mt-auto'>
                     <p className='font-normal font-body text-sm md:text-base lg:text-xl hidden sm:flex'>{art.dimensions.x} x {art.dimensions.y} {isZAxis}  cm</p>
                     <AvailableText isAvailable={art.isAvailable} />
