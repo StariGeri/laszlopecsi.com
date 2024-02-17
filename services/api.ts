@@ -14,21 +14,46 @@ export const connectToSupabase = () => {
   return supabase;
 };
 
+// call it here to avoid multiple connections
+const supabase = connectToSupabase();
+
 /**
- * @description Function to fetch the arts progressively to implement infinite scrolling
+ * @description Function to fetch the arts based on the search term
  * @returns All arts: ArtModel[]
  */
-export const fetchAllArt = async (offset = 0, limit = 10) => {
-  const supabase = connectToSupabase();
+export const fetchAllArt = async (searchTerm = '') => {
+  let query = supabase.from('art').select('*').order('title', { ascending: true });
 
-  const { data, error } = await supabase
-    .from('art')
-    .select('*')
-    .range(offset, offset + limit - 1);
+  const searchParam = searchTerm.toLowerCase();
+
+  if (searchParam && searchParam !== '') {
+    query = query.ilike('title', `%${searchParam}%`);
+  }
+
+  const { data, error } = await query;
 
   if (error) throw error;
 
-  return data;
+  return data as ArtModel[];
+};
+
+// function to query the number of arts
+export const fetchArtCount = async (searchTerm = '') => {
+  let query = supabase.from('art').select('id');
+
+  const searchParam = searchTerm.toLowerCase();
+
+  if (searchParam && searchParam !== '') {
+    query = query.ilike('title', `%${searchParam}%`);
+  }
+
+  const { data, error } = await query;
+
+  if (error) throw error;
+
+  if (!data || !data.length) return 0;
+
+  return data.length;
 };
 
 /**

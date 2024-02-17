@@ -8,9 +8,6 @@ const LoadingSkeleton = () => {
             <CardSkeleton />
             <CardSkeleton />
             <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
         </div>
     );
 };

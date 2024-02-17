@@ -1,53 +1,91 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useDebounce } from '@uidotdev/usehooks';
 
-import { fetchAllArt } from "@/services/api";
-import { ArtModel } from '@/types/ArtModel';
+import { fetchAllArt, fetchArtCount } from "@/services/api";
+import { useArt } from '@/providers/ArtProvider';
 import ArtCard from "./ArtCard";
 import LoadingSkeleton from './loadingSkeleton/LoadingSkeleton';
 
-const Cards = () => {
-    const [arts, setArts] = useState<ArtModel[]>([]);
-    const [hasMore, setHasMore] = useState(true);
-    const [error, setError] = useState<string>('');
-    const [offset, setOffset] = useState(0);
-    const limit = 6; // Adjust as needed
 
+const Cards = () => {
+
+    // get the arts and the search term from the context
+    const { arts, setArts, searchTerm } = useArt();
+
+    // debounce the search term, so it doesn't fire on every keystroke
+    const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+    const [numberOfFilteredArts, setNumberOfFiltereddArts] = useState(0);
+    const [error, setError] = useState<string>('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    // fetch the arts when the component mounts
     useEffect(() => {
-        fetchMoreData(); // Initial fetch
+        fetchDataAsync();
     }, []);
 
-    const fetchMoreData = async () => {
+
+    // refetch the arts when the search term changes
+    useEffect(() => {
+        fetchDataAsync();
+    }, [debouncedSearchTerm]);
+
+// this function handles the fetching of the artpieces
+    const fetchDataAsync = async () => {
+        console.log("Search term changed: " + debouncedSearchTerm);
+        console.log("current arts: " + JSON.stringify(arts));
+        setNumberOfFiltereddArts(0);
+
+        if (searchTerm !== '') {
+            setArts([]);
+        }
+
+        setIsLoading(true);
         try {
-            const newArts = await fetchAllArt(offset, limit) as ArtModel[];
-            setArts([...arts, ...newArts]);
-            setOffset(offset + limit);
-            if (newArts.length === 0 || newArts.length < limit) {
-                setHasMore(false);
-            }
+            const searchedArtCount = await fetchArtCount(debouncedSearchTerm);
+            const searchedArts = await fetchAllArt(debouncedSearchTerm);
+
+            console.log("searched arts count: " + searchedArts.length);
+            setArts(searchedArts);
+            console.log("number of all the matches: " + searchedArtCount);
+            setNumberOfFiltereddArts(searchedArtCount);
+
         } catch (error) {
             console.error("Failed to fetch arts:", error);
             setError("Failed to load the art collection. Please try refreshing the page.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
+    // if an error occurs, display the error message
     if (error) {
         return <div className="text-center text-red-500">{error}</div>;
     }
 
-    return (
-        <InfiniteScroll
-            dataLength={arts.length}
-            next={fetchMoreData}
-            hasMore={hasMore}
-            loader={<LoadingSkeleton />}
-        >
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 min-[500px]:gap-5 lg:gap-7 w-full max-w-[1240px] xl:mx-auto my-8 md:my-12 lg:my-24">
-                {arts.map((art, index) => (
-                    <ArtCard key={index} art={art} />
-                ))}
+    // if there are no artpieces that match the search term, display a message
+    if (numberOfFilteredArts === 0 && debouncedSearchTerm && !isLoading) {
+        return (
+            <div className="text-center text-lg my-10">
+                No results found for "{debouncedSearchTerm}"
             </div>
-        </InfiniteScroll>
+        )
+    }
+
+
+    return (
+        <>
+            {isLoading ? (
+                <LoadingSkeleton />
+            ) : (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 min-[500px]:gap-5 lg:gap-7 w-full max-w-[1240px] xl:mx-auto my-8 md:my-12 lg:my-24">
+                    {arts.map((art) => (
+                        <ArtCard key={art.id} art={art} />
+                    ))}
+                </div>
+            )}
+        </>
     );
 }
 

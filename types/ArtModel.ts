@@ -1,6 +1,6 @@
 export interface ArtModel {
   id: number;
-  title: { en: string; hu: string };
+  title: string;
   year?: number;
   isAvailable: boolean;
   dimensions: { x: number; y: number; z?: number };
