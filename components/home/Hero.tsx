@@ -9,6 +9,14 @@ import Blob from '@/components/shared/Blob';
 
 const HeroSection = () => {
 
+  const heroImages = [
+    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/collection/test1.JPG',
+    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/collection/test2.JPG',
+    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/collection/test3.JPG',
+    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/collection/test4.JPG',
+    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/collection/test5.JPG'
+  ];
+
   return (
     <div className="relative w-full max-w-[1240px] lg:mx-auto xl:grid xl:grid-cols-3 mt-2 md:mt-4 lg:mt-8 md:gap-6 lg:gap-8 xl:gap-10">
       <div className='flex flex-col justify-between'>
@@ -22,25 +30,25 @@ const HeroSection = () => {
         </div>
       </div>
       <Blob className='hidden xl:flex absolute top-0 right-0 -z-10 lg:w-[600px] lg:h-[600px] blur-lg' />
-      <Image src='/dummy/test3.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover xl:rounded-br-md hidden xl:block' />
-      <Image src='/dummy/test5.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover xl:rounded-bl-md hidden xl:block' />
+      <Image src={heroImages[0]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover xl:rounded-br-md hidden xl:block' />
+      <Image src={heroImages[1]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover xl:rounded-bl-md hidden xl:block' />
       <div className='xl:flex xl:items-end xl:gap-5 xl:pr-10'>
         <div className='hidden xl:flex flex-col items-center justify-center gap-3'>
           <FacebookIcon color='light' isOutlined={false} />
           <InstagramIcon color='light' isOutlined={false} />
           <div className='h-[76px] w-[2px] bg-black'></div>
         </div>
-        <Image src='/dummy/test2.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto object-cover hidden xl:block' />
+        <Image src={heroImages[4]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto object-cover hidden xl:block' />
       </div>
-      <Image src='/dummy/test1.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover hidden xl:block' />
-      <Image src='/dummy/test4.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover hidden xl:block' />
+      <Image src={heroImages[2]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover hidden xl:block' />
+      <Image src={heroImages[3]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover hidden xl:block' />
       {/**MOBILE - TABLET - SMALL LAPTOP */}
       <div className='relative w-screen flex xl:hidden gap-3 overflow-x-scroll'>
-        <Image src='/dummy/test3.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
-        <Image src='/dummy/test5.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
-        <Image src='/dummy/test2.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
-        <Image src='/dummy/test1.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
-        <Image src='/dummy/test4.JPG' alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
+        <Image src={heroImages[4]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
+        <Image src={heroImages[0]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
+        <Image src={heroImages[1]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
+        <Image src={heroImages[2]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
+        <Image src={heroImages[3]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
       </div>
     </div>
   );

@@ -4,8 +4,10 @@ export interface ArtModel {
   year?: number;
   isAvailable: boolean;
   dimensions: { x: number; y: number; z?: number };
-  type: { en: string; hu: string };
+  type_1: number | null
+  type_2: number | null
   material_1?: number | null;
   material_2?: number | null;
   images: string[];
+  description?: string;
 }

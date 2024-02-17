@@ -15,13 +15,16 @@ export const connectToSupabase = () => {
 };
 
 /**
- * @description Function to fetch every art
+ * @description Function to fetch the arts progressively to implement infinite scrolling
  * @returns All arts: ArtModel[]
  */
-export const fetchAllArt = async () => {
+export const fetchAllArt = async (offset = 0, limit = 10) => {
   const supabase = connectToSupabase();
 
-  const { data, error } = (await supabase.from('art').select('*')) as { data: ArtModel[]; error: any };
+  const { data, error } = await supabase
+    .from('art')
+    .select('*')
+    .range(offset, offset + limit - 1);
 
   if (error) throw error;
 

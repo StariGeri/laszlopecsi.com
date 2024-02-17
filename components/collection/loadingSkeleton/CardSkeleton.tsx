@@ -10,7 +10,7 @@ const CardSkeleton = () => {
             </div>
             <div className="h-2.5 bg-gray-200 rounded-full w-32 sm:w-48 mb-4"></div>
             <div className="h-2 w-24 sm:w-32 bg-gray-200 rounded-full mb-2.5"></div>
-            <div className="flex items-center gap-2 md:gap-3 ml-auto mt-2">
+            <div className="flex items-center gap-2 md:gap-3 ml-auto mt-2 md:mt-4 lg:mt-6">
                 <div className="h-2 w-2 bg-gray-200 rounded-full"></div>
                 <div className="h-1.5 w-24 sm:w-32 bg-gray-200 rounded-full"></div>
             </div>
