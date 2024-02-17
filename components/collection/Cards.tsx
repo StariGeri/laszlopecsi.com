@@ -4,7 +4,7 @@ import { fetchAllArt } from "@/services/api";
 import { ArtModel } from '@/types/ArtModel';
 
 import ArtCard from "./ArtCard";
-import LoadingSkeleton from '../shared/LoadingSkeleton';
+import LoadingSkeleton from './loadingSkeleton/LoadingSkeleton';
 
 const Cards = () => {
     const [arts, setArts] = useState<ArtModel[]>([]);

@@ -1,4 +1,4 @@
-import CardSkeleton from "../collection/loadingSkeleton/CardSkeleton";
+import CardSkeleton from "./CardSkeleton";
 
 
 const LoadingSkeleton = () => {
