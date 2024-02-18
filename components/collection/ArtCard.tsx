@@ -15,7 +15,7 @@ const ArtCard = ({ art }: { art: ArtModel }) => {
     const dimensionsText = isDimensionNull ? '' : `${art.dimensions.x} x ${art.dimensions.y} ${zAxis} cm`;
 
     return (
-        <div className='w-full h-[300px] md:h-[390px] lg:h-[420px] xl:h-[470px] flex flex-col mx-auto shadow hover:shadow-lg transition-all duration-200'>
+        <div className='w-full h-[330px] md:h-[390px] lg:h-[420px] xl:h-[470px] flex flex-col mx-auto shadow hover:shadow-lg transition-all duration-200'>
             <div className='imageContainer w-full h-2/3 bg-black bg-opacity-5 aspect-square'>
                 <Link href={`/collection/${art.id}`}>
                     <Image src={art.images[0]} alt='Artwork of Laszlo Pecsi' width={400} height={400} className='h-full w-full object-contain mx-auto' />
