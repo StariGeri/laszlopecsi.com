@@ -13,9 +13,9 @@ const Cards = () => {
     const { arts, setArts, searchTerm } = useArt();
 
     // debounce the search term, so it doesn't fire on every keystroke
-    const debouncedSearchTerm = useDebounce(searchTerm, 300);
+    const debouncedSearchTerm = useDebounce(searchTerm, 400);
 
-    const [numberOfFilteredArts, setNumberOfFiltereddArts] = useState(0);
+    const [numberOfSearchedArts, setNumberOfSearchedArts] = useState(0);
     const [error, setError] = useState<string>('');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -30,9 +30,9 @@ const Cards = () => {
         fetchDataAsync();
     }, [debouncedSearchTerm]);
 
-// this function handles the fetching of the artpieces
+    // this function handles the fetching of the artpieces
     const fetchDataAsync = async () => {
-        setNumberOfFiltereddArts(0);
+        setNumberOfSearchedArts(0);
 
         if (searchTerm !== '') {
             setArts([]);
@@ -44,7 +44,7 @@ const Cards = () => {
             const searchedArts = await fetchAllArt(debouncedSearchTerm);
 
             setArts(searchedArts);
-            setNumberOfFiltereddArts(searchedArtCount);
+            setNumberOfSearchedArts(searchedArtCount);
 
         } catch (error) {
             console.error("Failed to fetch arts:", error);
@@ -60,17 +60,24 @@ const Cards = () => {
     }
 
     // if there are no artpieces that match the search term, display a message
-    if (numberOfFilteredArts === 0 && debouncedSearchTerm && !isLoading) {
+    /* if (numberOfSearchedArts === 0 && debouncedSearchTerm && !isLoading) {
         return (
-            <div className="text-center text-lg my-10">
+            <div className="h-[30vh] font-body text-center text-lg my-10">
                 No results found for "{debouncedSearchTerm}"
             </div>
         )
-    }
+    } */
 
 
     return (
         <>
+            <div className='w-full max-w-[1240px] mx-auto mt-2 md:mt-3'>
+                {searchTerm && (
+                    <div className="text-sm sm:text-base md:text-lg font-medium font-body">
+                        ({numberOfSearchedArts}) results found for "{searchTerm}"
+                    </div>
+                )}
+            </div>
             {isLoading ? (
                 <LoadingSkeleton />
             ) : (

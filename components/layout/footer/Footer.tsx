@@ -8,7 +8,7 @@ import FooterCTA from "./FooterCTA";
 const Footer = () => {
 
     return (
-        <div className="w-full p-2 py-6 md:p-6 lg:py-12 bg-black">
+        <div className="w-full p-2 py-6 md:p-6 lg:py-12 bg-black mt-auto">
             <div className="w-full max-w-[1240px] lg:mx-auto flex flex-col">
                 <div className="FooterTop w-full mx-auto md:mx-0 flex flex-row px-2 lg:px-4">
                     <div className="w-1/2 flex justify-start sm:justify-center items-center md:hidden">
