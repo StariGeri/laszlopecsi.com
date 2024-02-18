@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <body className='bg-background scroll-smooth'>
+      <body className='bg-background'>
         <Main />
         <NextScript />
       </body>

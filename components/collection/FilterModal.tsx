@@ -1,5 +1,5 @@
 //Dependencies
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Icons
 import { HiXMark, HiOutlineFunnel, HiOutlineTrash } from "react-icons/hi2";
@@ -20,11 +20,19 @@ const FilterModal = () => {
     const [yearRange, setYearRange] = useState<number[]>([1966, 1981]);
 
     // block the scroll when the modal is open
-    if (isFilterModalOpen) {
-        document.body.style.overflow = "hidden";
-    } else {
-        document.body.style.overflow = "auto";
-    }
+    useEffect(() => {
+
+        if (isFilterModalOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+
+        // cleanup
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isFilterModalOpen]);
 
     const handleYearChange = (event: Event, newValue: number | number[]) => {
         setYearRange(newValue as number[]);
