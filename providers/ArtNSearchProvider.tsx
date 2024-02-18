@@ -5,8 +5,7 @@ interface ArtContextType {
     searchTerm: string;
     setSearchTerm: (searchTerm: string) => void;
     arts: ArtModel[];
-    setArts: React.Dispatch<React.SetStateAction<ArtModel[]>>;
-
+    setArts: (arts: ArtModel[]) => void;
 }
 
 interface ArtProviderProps {
@@ -22,13 +21,11 @@ const ArtContext = createContext<ArtContextType>({
 }
 );
 
-export const useArt = () => useContext(ArtContext);
+export const useSearchNArt = () => useContext(ArtContext);
 
 export const ArtProvider = ({ children }: ArtProviderProps) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [arts, setArts] = useState<ArtModel[]>([]);
-
-    // Include any other state or functions related to arts here
 
     return (
         <ArtContext.Provider value={{ searchTerm, setSearchTerm, arts, setArts }}>

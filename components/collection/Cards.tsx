@@ -1,8 +1,17 @@
+
+// Dependencies
 import React, { useEffect, useState } from 'react';
+
+// Hooks
 import { useDebounce } from '@uidotdev/usehooks';
 
+// Services
 import { fetchAllArt, fetchArtCount } from "@/services/api";
-import { useArt } from '@/providers/ArtProvider';
+
+// Providers
+import { useSearchNArt } from '@/providers/ArtNSearchProvider';
+
+// Components
 import ArtCard from "./ArtCard";
 import LoadingSkeleton from './loadingSkeleton/LoadingSkeleton';
 
@@ -10,7 +19,7 @@ import LoadingSkeleton from './loadingSkeleton/LoadingSkeleton';
 const Cards = () => {
 
     // get the arts and the search term from the context
-    const { arts, setArts, searchTerm } = useArt();
+    const { arts, setArts, searchTerm } = useSearchNArt();
 
     // debounce the search term, so it doesn't fire on every keystroke
     const debouncedSearchTerm = useDebounce(searchTerm, 400);
@@ -58,16 +67,6 @@ const Cards = () => {
     if (error) {
         return <div className="text-center text-red-500">{error}</div>;
     }
-
-    // if there are no artpieces that match the search term, display a message
-    /* if (numberOfSearchedArts === 0 && debouncedSearchTerm && !isLoading) {
-        return (
-            <div className="h-[30vh] font-body text-center text-lg my-10">
-                No results found for "{debouncedSearchTerm}"
-            </div>
-        )
-    } */
-
 
     return (
         <>
