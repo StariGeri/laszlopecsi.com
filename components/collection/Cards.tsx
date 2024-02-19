@@ -73,7 +73,7 @@ const Cards = () => {
             <div className='w-full max-w-[1240px] mx-auto mt-2 md:mt-3'>
                 {searchTerm && (
                     <div className="text-sm sm:text-base md:text-lg font-medium font-body">
-                        ({numberOfSearchedArts}) results found for "{searchTerm}"
+                        ({numberOfSearchedArts}) results for "{searchTerm}"
                     </div>
                 )}
             </div>

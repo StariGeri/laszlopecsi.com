@@ -1,3 +1,6 @@
+//Dependencies
+import React, { useEffect, useState } from "react";
+
 //Icons
 import { HiMagnifyingGlass, HiAdjustmentsHorizontal } from "react-icons/hi2";
 
@@ -5,14 +8,41 @@ import { HiMagnifyingGlass, HiAdjustmentsHorizontal } from "react-icons/hi2";
 import { useSearchNArt } from "@/providers/ArtNSearchProvider";
 import { useFilter } from "@/providers/FilterProvider";
 
+//Services
+import { fetchArtTypes, fetchArtMaterials } from "@/services/api";
+
 //Components
 import FilterModal from "./FilterModal";
-
 
 const FilterBar = () => {
 
     const { searchTerm, setSearchTerm } = useSearchNArt();
     const { isFilterModalOpen, setIsFilterModalOpen } = useFilter();
+
+    const [artTypes, setArtTypes] = useState<string[]>([]);
+    const [artMaterials, setArtMaterials] = useState<string[]>([]);
+    const [artSizes, setArtSizes] = useState<string[]>([]);
+
+    const sizes = ["small", "medium", "large", "extra large"];
+
+    const filterOptions = {
+        artTypes,
+        artMaterials,
+        artSizes
+    };
+
+    // fetch the filter options when the component mounts and memoize the results
+    useEffect(() => {
+        const fetchFilterOptions = async () => {
+            const types = await fetchArtTypes();
+            const materials = await fetchArtMaterials();
+            setArtTypes(types);
+            setArtMaterials(materials);
+            setArtSizes(sizes);
+        };
+
+        fetchFilterOptions();
+    }, []);
 
 
     const handleSearchTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +65,7 @@ const FilterBar = () => {
                 </div>
                 {/** Filter modal button */}
                 <button
-                    onClick={()=> setIsFilterModalOpen(true)}
+                    onClick={() => setIsFilterModalOpen(true)}
                     className="flex items-center justify-center h-10 md:h-12 p-4 bg-primaryOrange hover:bg-opacity-75 duration-200 transition-all rounded-lg md:w-56"
                 >
                     <p className="font-body font-semibold md:text-lg lg:text-[20px] text-white hidden md:flex">Filter</p>
@@ -43,7 +73,7 @@ const FilterBar = () => {
                 </button>
             </div>
             {/** Filter Modal */}
-            {isFilterModalOpen && <FilterModal />}
+            {isFilterModalOpen && <FilterModal filterOptions={filterOptions}/>}
         </>
     );
 

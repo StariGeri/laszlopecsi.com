@@ -1,5 +1,5 @@
 //Dependencies
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Icons
 import { HiXMark, HiOutlineFunnel, HiOutlineTrash } from "react-icons/hi2";
@@ -13,7 +13,16 @@ import { useFilter } from "@/providers/FilterProvider";
 //Components
 import Checkbox from "./Checkbox";
 
-const FilterModal = () => {
+
+interface FilterModalProps {
+    filterOptions: {
+        artTypes: string[];
+        artMaterials: string[];
+        artSizes: string[];
+    };
+}
+
+const FilterModal = ({ filterOptions }: FilterModalProps) => {
 
     const { isFilterModalOpen, setIsFilterModalOpen } = useFilter();
 
@@ -54,12 +63,11 @@ const FilterModal = () => {
                         <HiXMark className="w-5 h-5 md:w-6 md:h-6 hover:bg-slate-200 rounded-full duration-200 transition-all" />
                     </button>
                 </div>
-                {/** Modal Content */}
                 <div className="w-full flex flex-col py-4 md:py-6">
                     {/**Availability */}
                     <div className="flex flex-col">
                         <h2 className="font-body font-semibold text-lg md:text-xl lg:text-[22px] mb-2">Status</h2>
-                        <div className="grid grid-cols-3 lg:grid-cols-4 px-2">
+                        <div className="grid grid-cols-3 px-2">
                             <Checkbox label="Available" name="available" value="" onChange={() => console.log("clicked available")} />
                             <Checkbox label="Sold" name="sold" value="" onChange={() => console.log("clicked sold")} />
                         </div>
@@ -67,30 +75,28 @@ const FilterModal = () => {
                     {/**Type */}
                     <div className="flex flex-col mt-4">
                         <h2 className="font-body font-semibold text-lg md:text-xl lg:text-[22px] mb-2">Type</h2>
-                        <div className="grid grid-cols-3 lg:grid-cols-4 px-2">
-                            <Checkbox label="Gobelin" name="gobelin" value="" onChange={() => console.log("clicked gobelin")} />
-                            <Checkbox label="Textil" name="textil" value="" onChange={() => console.log("clicked textil")} />
-                            <Checkbox label="Painting" name="painting" value="" onChange={() => console.log("clicked painting")} />
-                            <Checkbox label="Mixed" name="mixed" value="" onChange={() => console.log("clicked mixed")} />
+                        <div className="grid grid-cols-3 px-2">
+                            {filterOptions.artTypes.map((type, index) => (
+                                <Checkbox key={index} label={type} name={type} value="" onChange={() => console.log(`clicked ${type}`)} />
+                            ))}
                         </div>
                     </div>
                     {/**Material */}
                     <div className="flex flex-col mt-4">
                         <h2 className="font-body font-semibold text-lg md:text-xl lg:text-[22px] mb-2">Material</h2>
-                        <div className="grid grid-cols-3 lg:grid-cols-4 px-2">
-                            <Checkbox label="Wool" name="wool" value="" onChange={() => console.log("clicked wool")} />
-                            <Checkbox label="Thread" name="thread" value="" onChange={() => console.log("clicked thread")} />
-                            <Checkbox label="Mixed" name="mixed" value="" onChange={() => console.log("clicked mixed")} />
+                        <div className="grid grid-cols-3 px-2">
+                            {filterOptions.artMaterials.map((material, index) => (
+                                <Checkbox key={index} label={material} name={material} value="" onChange={() => console.log(`clicked ${material}`)} />
+                            ))}
                         </div>
                     </div>
                     {/**Size */}
                     <div className="flex flex-col mt-4">
                         <h2 className="font-body font-semibold text-lg md:text-xl lg:text-[22px] mb-2">Size</h2>
-                        <div className="grid grid-cols-3 lg:grid-cols-4 px-2">
-                            <Checkbox label="Small" name="small" value="" onChange={() => console.log("clicked small")} />
-                            <Checkbox label="Medium" name="medium" value="" onChange={() => console.log("clicked medium")} />
-                            <Checkbox label="Large" name="large" value="" onChange={() => console.log("clicked large")} />
-                            <Checkbox label="Extra Large" name="extra large" value="" onChange={() => console.log("clicked extra large")} />
+                        <div className="grid grid-cols-3 px-2">
+                            {filterOptions.artSizes.map((size, index) => (
+                                <Checkbox key={index} label={size} name={size} value="" onChange={() => console.log(`clicked ${size}`)} />
+                            ))}
                         </div>
                     </div>
                     {/**Year */}

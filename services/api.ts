@@ -69,3 +69,33 @@ export const fetchArtById = async (id: number) => {
   if (error) throw error;
   return data;
 };
+
+/**
+ * @description Function to fetch all the types that are used in the arts table
+ * @returns All types: string[]
+ */
+export const fetchArtTypes = async () => {
+  const { data, error } = await supabase
+    .from('type')
+    .select('type');
+
+  // filter out the types so only one of each type is returned
+  const uniqueTypes = data?.filter((type, index, self) => self.findIndex((t) => t.type === type.type) === index);
+  
+  if (error) throw error;
+
+  return uniqueTypes?.map((type) => type.type) as string[];
+};
+
+
+/**
+ * @description Function to fetch all the materials that are used in the arts table
+ * @returns All materials: string[]
+ */
+export const fetchArtMaterials = async () => {
+  const { data, error } = await supabase.from('material').select('materialType');
+
+  if (error) throw error;
+
+  return data?.map((material) => material.materialType) as string[];
+};
