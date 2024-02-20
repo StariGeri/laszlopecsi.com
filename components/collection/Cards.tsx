@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useDebounce } from '@uidotdev/usehooks';
 
 // Services
-import { fetchAllArt, fetchArtCount } from "@/services/api";
+import { fetchArts, fetchArtCount } from "@/services/api";
 
 // Providers
 import { useSearchNArt } from '@/providers/ArtNSearchProvider';
@@ -14,12 +14,14 @@ import { useSearchNArt } from '@/providers/ArtNSearchProvider';
 // Components
 import ArtCard from "./ArtCard";
 import LoadingSkeleton from './loadingSkeleton/LoadingSkeleton';
+import { useFilter } from '@/providers/FilterProvider';
 
 
 const Cards = () => {
 
     // get the arts and the search term from the context
     const { arts, setArts, searchTerm } = useSearchNArt();
+    const { filterCriteria } = useFilter();
 
     // debounce the search term, so it doesn't fire on every keystroke
     const debouncedSearchTerm = useDebounce(searchTerm, 400);
@@ -37,7 +39,7 @@ const Cards = () => {
     // refetch the arts when the search term changes
     useEffect(() => {
         fetchDataAsync();
-    }, [debouncedSearchTerm]);
+    }, [debouncedSearchTerm, filterCriteria]);
 
     // this function handles the fetching of the artpieces
     const fetchDataAsync = async () => {
@@ -49,8 +51,8 @@ const Cards = () => {
 
         setIsLoading(true);
         try {
-            const searchedArtCount = await fetchArtCount(debouncedSearchTerm);
-            const searchedArts = await fetchAllArt(debouncedSearchTerm);
+            const searchedArtCount = await fetchArtCount(debouncedSearchTerm, filterCriteria);
+            const searchedArts = await fetchArts(debouncedSearchTerm, filterCriteria);
 
             setArts(searchedArts);
             setNumberOfSearchedArts(searchedArtCount);

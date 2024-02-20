@@ -8,11 +8,11 @@ import AvailableText from './AvailableText';
 const ArtCard = ({ art }: { art: ArtModel }) => {
 
     // handle the exictence of the z-axis
-    const zAxis = `${art.dimensions.z ? `x ${art.dimensions.z}` : ''}`;
+    const zAxis = `${art.dimensions[2] ? `x ${art.dimensions[2]}` : ''}`;
 
     // handle the dimensions in case they are null
-    const isDimensionNull = art.dimensions.x === 0 || art.dimensions.y === 0;
-    const dimensionsText = isDimensionNull ? '' : `${art.dimensions.x} x ${art.dimensions.y} ${zAxis} cm`;
+    const isDimensionNull = art.dimensions[0] === 0 || art.dimensions[1] === 0;
+    const dimensionsText = isDimensionNull ? '' : `${art.dimensions[0]} x ${art.dimensions[1]} ${zAxis} cm`;
 
     return (
         <div className='w-full h-[330px] md:h-[390px] lg:h-[420px] xl:h-[470px] flex flex-col mx-auto shadow hover:shadow-lg transition-all duration-200'>

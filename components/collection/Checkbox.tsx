@@ -1,11 +1,13 @@
 interface CheckboxProps extends React.HTMLProps<HTMLInputElement> {
     label: string;
     name: string;
-    value: string;
+    value?: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    checked?: boolean;
+    defaultChecked?: boolean;
 }
 
-const Checkbox = ({ label, name, value, onChange }: CheckboxProps) => {
+const Checkbox = ({ label, name, value, onChange, checked,defaultChecked }: CheckboxProps) => {
 
     return (
         <div className="flex items-center gap-2">
@@ -16,6 +18,8 @@ const Checkbox = ({ label, name, value, onChange }: CheckboxProps) => {
                 id={name}
                 value={value}
                 onChange={onChange}
+                checked={checked}
+                defaultChecked={defaultChecked}
             />
             <h3 className="font-body font-medium text-base md:text-lg lg:text-xl">{label}</h3>
         </div>

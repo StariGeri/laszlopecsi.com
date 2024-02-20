@@ -1,13 +1,16 @@
+import { Json } from './supabase';
+
 export interface ArtModel {
   id: number;
   title: string;
-  year?: number;
+  year: number;
   isAvailable: boolean;
-  dimensions: { x: number; y: number; z?: number };
-  type_1: number | null
-  type_2: number | null
-  material_1?: number | null;
-  material_2?: number | null;
+  dimensions: number[];
+  type: string[];
+  sub_type: string;
+  material: string;
+  sub_material: string;
   images: string[];
   description?: string;
+  size: string;
 }

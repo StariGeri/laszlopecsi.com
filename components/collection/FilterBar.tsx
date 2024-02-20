@@ -22,14 +22,11 @@ const FilterBar = () => {
     const [artTypes, setArtTypes] = useState<string[]>([]);
     const [artMaterials, setArtMaterials] = useState<string[]>([]);
     const [artSizes, setArtSizes] = useState<string[]>([]);
+    const [artAvailablity, setArtAvailablity] = useState<string[]>([]);
+    const [yearRange, setYearRange] = useState<number[]>([1966, 1981]);
 
     const sizes = ["small", "medium", "large", "extra large"];
-
-    const filterOptions = {
-        artTypes,
-        artMaterials,
-        artSizes
-    };
+    const availablity = ["available", "sold"];
 
     // fetch the filter options when the component mounts and memoize the results
     useEffect(() => {
@@ -39,16 +36,24 @@ const FilterBar = () => {
             setArtTypes(types);
             setArtMaterials(materials);
             setArtSizes(sizes);
+            setArtAvailablity(availablity);
         };
 
         fetchFilterOptions();
     }, []);
 
+    const filterOptions = {
+        artTypes,
+        artMaterials,
+        artSizes,
+        artAvailablity,
+        yearRange
+    };
+
 
     const handleSearchTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
     };
-
 
     return (
         <>
@@ -73,7 +78,7 @@ const FilterBar = () => {
                 </button>
             </div>
             {/** Filter Modal */}
-            {isFilterModalOpen && <FilterModal filterOptions={filterOptions}/>}
+            {isFilterModalOpen && <FilterModal filterOptions={filterOptions} />}
         </>
     );
 

@@ -4,20 +4,38 @@ import React, { createContext, useContext, useState } from 'react';
 interface FilterContextType {
     isFilterModalOpen: boolean;
     setIsFilterModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    filteredArts: ArtModel[];
-    setFilteredArts: (arts: ArtModel[]) => void;
+    filterCriteria: FilterType;
+    updateFilterCriteria: (newCriteria: Partial<FilterType>) => void;
+}
+
+export interface FilterType {
+    isAvailable: boolean | undefined;
+    type: string[];
+    material: string[];
+    size: string[];
+    yearRange: number[];
+
 }
 
 interface FilterProviderProps {
     children: React.ReactNode;
 }
 
+// Provide actual default values for filterCriteria
+const defaultFilterCriteria: FilterType = {
+    isAvailable: undefined,
+    type: [],
+    material: [],
+    size: [],
+    yearRange: [1966, 1981],
+};
+
 // create the context with default values
 const FilterContext = createContext<FilterContextType>({
     isFilterModalOpen: false,
     setIsFilterModalOpen: () => { },
-    filteredArts: [],
-    setFilteredArts: () => { }
+    filterCriteria: defaultFilterCriteria,
+    updateFilterCriteria: () => { },
 });
 
 
@@ -25,10 +43,23 @@ export const useFilter = () => useContext(FilterContext);
 
 export const FilterProvider = ({ children }: FilterProviderProps) => {
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-    const [filteredArts, setFilteredArts] = useState<ArtModel[]>([]);
+    const [filterCriteria, setFilterCriteria] = useState<FilterType>({
+        isAvailable: undefined,
+        type: [],
+        material: [],
+        size: [],
+        yearRange: [1966, 1981],
+        // Add other filters later if needed
+    });
+
+    // Add functions to update these filters
+    const updateFilterCriteria = (newCriteria: Partial<FilterType>) => {
+        setFilterCriteria(prev => ({ ...prev, ...newCriteria }));
+    };
+
 
     return (
-        <FilterContext.Provider value={{ isFilterModalOpen, setIsFilterModalOpen, filteredArts, setFilteredArts }}>
+        <FilterContext.Provider value={{ isFilterModalOpen, setIsFilterModalOpen, filterCriteria, updateFilterCriteria }}>
             {children}
         </FilterContext.Provider>
     );
