@@ -26,7 +26,7 @@ const defaultFilterCriteria: FilterType = {
     type: [],
     material: [],
     size: [],
-    yearRange: [1950, 1999],
+    yearRange: [1966, 1981],
 };
 
 // create the context with default values

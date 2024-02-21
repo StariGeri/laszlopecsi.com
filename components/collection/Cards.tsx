@@ -1,6 +1,6 @@
 
 // Dependencies
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAsyncEffect from 'use-async-effect';
 
 // Hooks
@@ -30,6 +30,15 @@ const Cards = () => {
     const [numberOfSearchedArts, setNumberOfSearchedArts] = useState(0);
     const [error, setError] = useState<string>('');
     const [isLoading, setIsLoading] = useState(false);
+    const [hasFilterSet, setHasFilterSet] = useState(false);
+
+    useEffect(() => {
+        if (filterCriteria.status !== undefined || filterCriteria.type.length > 0 || filterCriteria.material.length > 0 || filterCriteria.size.length > 0 || filterCriteria.yearRange[0] !== 1966 || filterCriteria.yearRange[1] !== 1981) {
+            setHasFilterSet(true);
+        } else {
+            setHasFilterSet(false);
+        }
+    }, [filterCriteria]);
 
 
     // refetch the arts when the search term changes
@@ -65,9 +74,19 @@ const Cards = () => {
     return (
         <>
             <div className='w-full max-w-[1240px] mx-auto mt-2 md:mt-3'>
-                {searchTerm && (
+                {searchTerm && !hasFilterSet && (
                     <div className="text-sm sm:text-base md:text-lg font-medium font-body">
                         ({numberOfSearchedArts}) results for "{searchTerm}"
+                    </div>
+                )}
+                {hasFilterSet && !searchTerm && (
+                    <div className="text-sm sm:text-base md:text-lg font-medium font-body">
+                        ({numberOfSearchedArts}) results for the applied filters
+                    </div>
+                )}
+                {searchTerm && hasFilterSet && (
+                    <div className="text-sm sm:text-base md:text-lg font-medium font-body">
+                        ({numberOfSearchedArts}) results for "{searchTerm}" and the applied filters
                     </div>
                 )}
             </div>

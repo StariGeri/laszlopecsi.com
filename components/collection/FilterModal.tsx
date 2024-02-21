@@ -34,6 +34,8 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
     const [selectedStatus, setSelectedStatus] = useState<boolean>();
 
+    const [resetKey, setResetKey] = useState(0);
+
     // block the scroll when the modal is open
     useEffect(() => {
         if (isFilterModalOpen) {
@@ -81,11 +83,13 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
         setSelectedSizes([]);
         setYearRange([1966, 1981]);
         updateFilterCriteria({
+            status: undefined,
             type: [],
             material: [],
             size: [],
             yearRange: [1966, 1981],
         });
+        setResetKey(prev => prev + 1);
     };
 
     const handleTypeChange = (type: string) => {
@@ -134,7 +138,7 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
             {/**BackgroundOverlay */}
             {isFilterModalOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-30" onClick={() => setIsFilterModalOpen(false)}></div>}
             {/**Modal */}
-            <div className="fixed w-full md:max-w-[550px] h-fit inset-0 m-auto bg-white flex flex-col justify-center items-center z-50 rounded-lg p-2 md:p-4 lg:p-5">
+            <div key={resetKey} className="fixed w-full md:max-w-[550px] h-fit inset-0 m-auto bg-white flex flex-col justify-center items-center z-50 rounded-lg p-2 md:p-4 lg:p-5">
                 {/** Modal header */}
                 <div className="w-full h-fit flex justify-between items-center pb-2 border-b border-b-black">
                     <div className="flex items-center gap-2 md:gap-3">
