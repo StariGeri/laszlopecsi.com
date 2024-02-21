@@ -24,7 +24,7 @@ const supabase = connectToSupabase();
  * @returns All arts: ArtModel[]
  */
 export const fetchArts = async (searchTerm = '', filters: FilterType) => {
-  let query = supabase.from('art').select('*').order('title', { ascending: true });
+  let query = supabase.from('art').select('id,title,status,dimensions,year,images').order('title', { ascending: true });
 
   const searchParam = searchTerm.toLowerCase();
 
@@ -117,7 +117,7 @@ export const fetchArtCount = async (searchTerm = '', filters: FilterType) => {
 export const fetchArtById = async (id: number) => {
   const supabase = connectToSupabase();
 
-  const { data, error } = (await supabase.from('arts').select('*').eq('id', id).single()) as { data: ArtModel; error: any };
+  const { data, error } = (await supabase.from('art').select('*').eq('id', id).single()) as { data: ArtModel; error: any };
 
   if (error) throw error;
   return data;
