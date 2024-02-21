@@ -1,5 +1,6 @@
 //Dependencies
 import React, { useEffect, useState } from "react";
+import useAsyncEffect from "use-async-effect";
 
 //Icons
 import { HiMagnifyingGlass, HiAdjustmentsHorizontal } from "react-icons/hi2";
@@ -22,31 +23,31 @@ const FilterBar = () => {
     const [artTypes, setArtTypes] = useState<string[]>([]);
     const [artMaterials, setArtMaterials] = useState<string[]>([]);
     const [artSizes, setArtSizes] = useState<string[]>([]);
-    const [artAvailablity, setArtAvailablity] = useState<string[]>([]);
+    const [artStatus, setArtStatus] = useState<string[]>([]);
     const [yearRange, setYearRange] = useState<number[]>([1966, 1981]);
 
     const sizes = ["small", "medium", "large", "extra large"];
     const availablity = ["available", "sold"];
 
     // fetch the filter options when the component mounts and memoize the results
-    useEffect(() => {
-        const fetchFilterOptions = async () => {
-            const types = await fetchArtTypes();
-            const materials = await fetchArtMaterials();
-            setArtTypes(types);
-            setArtMaterials(materials);
-            setArtSizes(sizes);
-            setArtAvailablity(availablity);
-        };
+    useAsyncEffect(async isMounted => {
+        // get the filter options
+        const types = await fetchArtTypes();
+        const materials = await fetchArtMaterials();
+        if (!isMounted()) return;
 
-        fetchFilterOptions();
+        // set the filter options
+        setArtTypes(types);
+        setArtMaterials(materials);
+        setArtSizes(sizes);
+        setArtStatus(availablity);
     }, []);
 
     const filterOptions = {
         artTypes,
         artMaterials,
         artSizes,
-        artAvailablity,
+        artStatus,
         yearRange
     };
 

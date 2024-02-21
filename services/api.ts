@@ -32,6 +32,11 @@ export const fetchArts = async (searchTerm = '', filters: FilterType) => {
     query = query.ilike('title', `%${searchParam}%`);
   }
 
+  // Filter the arts based on their status
+  if (filters.status !== undefined) {
+    query = query.eq('status', filters.status);
+  }
+
   // Filter the arts based on their type
   if (filters.type.length > 0) {
     query = query.in('type', filters.type);
@@ -73,12 +78,11 @@ export const fetchArtCount = async (searchTerm = '', filters: FilterType) => {
   }
 
   // Filter the arts based on their status
-  if (filters.isAvailable !== undefined) {
-    query = query.eq('isAvailable', filters.isAvailable);
+  if (filters.status !== undefined) {
+    query = query.eq('status', filters.status);
   }
 
   // filter the arts based on their type
-  // the type in the database is an array, and the artType in the FilterType is also an array
   if (filters.type.length > 0) {
     query = query.in('type', filters.type);
   }
@@ -120,7 +124,7 @@ export const fetchArtById = async (id: number) => {
 };
 
 /**
- * @description Function to fetch all the type_names with their ids
+ * @description Function to fetch all the types for filtering
  * @returns All types
  */
 export const fetchArtTypes = async () => {
@@ -128,16 +132,9 @@ export const fetchArtTypes = async () => {
 
   if (error) throw error;
 
-  // Extract unique types from the fetched data
-  const typesSet = new Set<string>();
+  const uniqueTypes = Array.from(new Set(data.map((art: { type: string }) => art.type)));
 
-  data.forEach((art: { type: string[] }) => {
-    art.type.forEach((type) => typesSet.add(type));
-  });
-
-  const types: string[] = Array.from(typesSet);
-
-  return types;
+  return uniqueTypes;
 };
 
 /**

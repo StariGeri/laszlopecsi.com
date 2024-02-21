@@ -12,7 +12,6 @@ import { useFilter } from "@/providers/FilterProvider";
 
 //Components
 import Checkbox from "./Checkbox";
-import { stat } from "fs";
 
 
 interface FilterModalProps {
@@ -20,7 +19,7 @@ interface FilterModalProps {
         artTypes: string[];
         artMaterials: string[];
         artSizes: string[];
-        artAvailablity: string[];
+        artStatus: string[];
         yearRange: number[];
     };
 }
@@ -29,7 +28,7 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
 
     const { isFilterModalOpen, setIsFilterModalOpen, filterCriteria, updateFilterCriteria } = useFilter();
 
-    const [yearRange, setYearRange] = useState<number[]>([1966, 1981]);
+    const [yearRange, setYearRange] = useState<number[]>([1950, 1999]);
     const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
     const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
@@ -54,11 +53,19 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
         setYearRange(newYearRange);
     };
 
+    useEffect(() => {
+        setSelectedStatus(filterCriteria.status);
+        setSelectedTypes(filterCriteria.type);
+        setSelectedMaterials(filterCriteria.material);
+        setSelectedSizes(filterCriteria.size);
+        setYearRange(filterCriteria.yearRange);
+    }, []);
+
 
     const applyFilters = () => {
         // Assuming you want to filter by any of the selected types, materials, sizes
         updateFilterCriteria({
-            isAvailable: selectedStatus,
+            status: selectedStatus,
             type: selectedTypes,
             material: selectedMaterials,
             size: selectedSizes,
@@ -72,7 +79,7 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
         setSelectedTypes([]);
         setSelectedMaterials([]);
         setSelectedSizes([]);
-        setYearRange([]);
+        setYearRange([1966, 1981]);
         updateFilterCriteria({
             type: [],
             material: [],
@@ -111,8 +118,13 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
         });
     };
 
-    const handleAvailabilityChange = (status: boolean) => {
-        setSelectedStatus(status);
+    const handleStatusChange = (status: boolean) => {
+        setSelectedStatus((prevStatus) => {
+            if (prevStatus === status) {
+                return undefined; // Allow unselecting a status
+            }
+            return status;
+        });
     };
 
 
@@ -139,13 +151,13 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
                     <div className="flex flex-col">
                         <h2 className="font-body font-semibold text-lg md:text-xl lg:text-[22px] mb-2">Status</h2>
                         <div className="grid grid-cols-3 px-2">
-                            {filterOptions.artAvailablity.map((status, index) => (
+                            {filterOptions.artStatus.map((status, index) => (
                                 <Checkbox
                                     key={index}
                                     label={status}
                                     name={status}
-                                    defaultChecked={filterCriteria.isAvailable === (status === "available")}
-                                    onChange={() => { handleAvailabilityChange(status === "available") }}
+                                    checked={selectedStatus === (status === "available")}
+                                    onChange={() => { handleStatusChange(status === "available") }}
                                 />
                             ))}
                         </div>
@@ -203,8 +215,8 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
                                 value={yearRange}
                                 onChange={handleYearChange}
                                 valueLabelDisplay="auto"
-                                min={filterCriteria.yearRange[0] ? filterCriteria.yearRange[0] : 1966}
-                                max={filterCriteria.yearRange[1] ? filterCriteria.yearRange[1] : 1981}
+                                min={1966}
+                                max={1981}
                                 disableSwap
                             />
                         </div>

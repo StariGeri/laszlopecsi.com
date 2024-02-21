@@ -4,9 +4,9 @@ export interface ArtModel {
   id: number;
   title: string;
   year: number;
-  isAvailable: boolean;
+  status: boolean;
   dimensions: number[];
-  type: string[];
+  type: string;
   sub_type: string;
   material: string;
   sub_material: string;

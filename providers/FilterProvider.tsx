@@ -1,4 +1,3 @@
-import { ArtModel } from '@/types/ArtModel';
 import React, { createContext, useContext, useState } from 'react';
 
 interface FilterContextType {
@@ -9,7 +8,7 @@ interface FilterContextType {
 }
 
 export interface FilterType {
-    isAvailable: boolean | undefined;
+    status: boolean | undefined;
     type: string[];
     material: string[];
     size: string[];
@@ -23,11 +22,11 @@ interface FilterProviderProps {
 
 // Provide actual default values for filterCriteria
 const defaultFilterCriteria: FilterType = {
-    isAvailable: undefined,
+    status: undefined,
     type: [],
     material: [],
     size: [],
-    yearRange: [1966, 1981],
+    yearRange: [1950, 1999],
 };
 
 // create the context with default values
@@ -43,14 +42,7 @@ export const useFilter = () => useContext(FilterContext);
 
 export const FilterProvider = ({ children }: FilterProviderProps) => {
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-    const [filterCriteria, setFilterCriteria] = useState<FilterType>({
-        isAvailable: undefined,
-        type: [],
-        material: [],
-        size: [],
-        yearRange: [1966, 1981],
-        // Add other filters later if needed
-    });
+    const [filterCriteria, setFilterCriteria] = useState<FilterType>(defaultFilterCriteria);
 
     // Add functions to update these filters
     const updateFilterCriteria = (newCriteria: Partial<FilterType>) => {

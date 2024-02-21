@@ -1,6 +1,7 @@
 
 // Dependencies
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import useAsyncEffect from 'use-async-effect';
 
 // Hooks
 import { useDebounce } from '@uidotdev/usehooks';
@@ -30,24 +31,15 @@ const Cards = () => {
     const [error, setError] = useState<string>('');
     const [isLoading, setIsLoading] = useState(false);
 
-    // fetch the arts when the component mounts
-    useEffect(() => {
-        fetchDataAsync();
-    }, []);
-
 
     // refetch the arts when the search term changes
-    useEffect(() => {
-        fetchDataAsync();
+    useAsyncEffect(async () => {
+        await fetchDataAsync();
     }, [debouncedSearchTerm, filterCriteria]);
 
     // this function handles the fetching of the artpieces
     const fetchDataAsync = async () => {
         setNumberOfSearchedArts(0);
-
-        if (searchTerm !== '') {
-            setArts([]);
-        }
 
         setIsLoading(true);
         try {

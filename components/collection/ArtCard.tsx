@@ -27,7 +27,7 @@ const ArtCard = ({ art }: { art: ArtModel }) => {
                 <p className='italic font-body font-medium text-base md:text-lg lg:text-[20px]'>{art.year ? art.year : 'Unknown'}</p>
                 <div className='w-full flex items-center justify-end sm:justify-between mt-auto'>
                     <p className='font-normal font-body text-sm md:text-base lg:text-xl hidden sm:flex'>{dimensionsText}</p>
-                    <AvailableText isAvailable={art.isAvailable} />
+                    <AvailableText isAvailable={art.status} />
                 </div>
             </div>
         </div>
