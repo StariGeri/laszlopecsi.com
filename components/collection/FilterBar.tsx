@@ -1,61 +1,25 @@
 //Dependencies
-import React, { useEffect, useState } from "react";
-import useAsyncEffect from "use-async-effect";
+import React from "react";
+
+// Hooks
+import { useFilterOptions } from "@/hooks/useFilterOptions";
 
 //Icons
 import { HiMagnifyingGlass, HiAdjustmentsHorizontal } from "react-icons/hi2";
 
-//Providers
-import { useSearchNArt } from "@/providers/ArtNSearchProvider";
-import { useFilter } from "@/providers/FilterProvider";
-
-//Services
-import { fetchArtTypes, fetchArtMaterials } from "@/services/api";
-
 //Components
 import FilterModal from "./FilterModal";
+import { useFilter } from "@/providers/FilterProvider";
+
+/**
+ * @description This component is responsible for rendering the filter bar and the filter modal button and the actual modal
+ * @returns {JSX.Element} - The filter bar and the filter modal
+*/
 
 const FilterBar = () => {
 
-    const { searchTerm, setSearchTerm } = useSearchNArt();
     const { isFilterModalOpen, setIsFilterModalOpen } = useFilter();
-
-    const [artTypes, setArtTypes] = useState<string[]>([]);
-    const [artMaterials, setArtMaterials] = useState<string[]>([]);
-    const [artSizes, setArtSizes] = useState<string[]>([]);
-    const [artStatus, setArtStatus] = useState<string[]>([]);
-    const [yearRange, setYearRange] = useState<number[]>([1966, 1981]);
-
-    const sizes = ["small", "medium", "large", "extra large"];
-    const availablity = ["available", "sold"];
-
-    // fetch the filter options when the component mounts and memoize the results
-    useAsyncEffect(async isMounted => {
-        // get the filter options
-        const types = await fetchArtTypes();
-        const materials = await fetchArtMaterials();
-        if (!isMounted()) return;
-
-        // set the filter options
-        setArtTypes(types);
-        setArtMaterials(materials);
-        setArtSizes(sizes);
-        setArtStatus(availablity);
-    }, []);
-
-    const filterOptions = {
-        artTypes,
-        artMaterials,
-        artSizes,
-        artStatus,
-        yearRange
-    };
-
-
-    const handleSearchTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(e.target.value);
-    };
-
+    const { filterOptions, handleSearchTermChange, searchTerm } = useFilterOptions();
     return (
         <>
             <div className="w-full max-w-[1240px] flex items-center gap-4 lg:gap-12 mx-auto">

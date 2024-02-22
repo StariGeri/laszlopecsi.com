@@ -1,14 +1,14 @@
 //Dependencies
-import React, { useEffect, useState } from "react";
+import React from "react";
+
+// Hooks
+import { useFilterModal } from "@/hooks/useFilterModal";
 
 // Icons
 import { HiXMark, HiOutlineFunnel, HiOutlineTrash } from "react-icons/hi2";
 
 // 3rd Party components
 import Slider from '@mui/material/Slider';
-
-//Providers
-import { useFilter } from "@/providers/FilterProvider";
 
 //Components
 import Checkbox from "./Checkbox";
@@ -26,112 +26,8 @@ interface FilterModalProps {
 
 const FilterModal = ({ filterOptions }: FilterModalProps) => {
 
-    const { isFilterModalOpen, setIsFilterModalOpen, filterCriteria, updateFilterCriteria } = useFilter();
-
-    const [yearRange, setYearRange] = useState<number[]>([1950, 1999]);
-    const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
-    const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
-    const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
-    const [selectedStatus, setSelectedStatus] = useState<boolean>();
-
-    const [resetKey, setResetKey] = useState(0);
-
-    // block the scroll when the modal is open
-    useEffect(() => {
-        if (isFilterModalOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-
-        // cleanup
-        return () => {
-            document.body.style.overflow = 'auto';
-        };
-    }, [isFilterModalOpen]);
-
-    const handleYearChange = (event: Event, newValue: number | number[]) => {
-        const newYearRange = newValue as number[];
-        setYearRange(newYearRange);
-    };
-
-    useEffect(() => {
-        setSelectedStatus(filterCriteria.status);
-        setSelectedTypes(filterCriteria.type);
-        setSelectedMaterials(filterCriteria.material);
-        setSelectedSizes(filterCriteria.size);
-        setYearRange(filterCriteria.yearRange);
-    }, []);
-
-
-    const applyFilters = () => {
-        // Assuming you want to filter by any of the selected types, materials, sizes
-        updateFilterCriteria({
-            status: selectedStatus,
-            type: selectedTypes,
-            material: selectedMaterials,
-            size: selectedSizes,
-            yearRange,
-        });
-        setIsFilterModalOpen(false);
-    };
-
-    const clearFilters = () => {
-        setSelectedStatus(undefined);
-        setSelectedTypes([]);
-        setSelectedMaterials([]);
-        setSelectedSizes([]);
-        setYearRange([1966, 1981]);
-        updateFilterCriteria({
-            status: undefined,
-            type: [],
-            material: [],
-            size: [],
-            yearRange: [1966, 1981],
-        });
-        setResetKey(prev => prev + 1);
-    };
-
-    const handleTypeChange = (type: string) => {
-        setSelectedTypes((prevSelectedTypes) => {
-            if (prevSelectedTypes.includes(type)) {
-                return prevSelectedTypes.filter(t => t !== type);
-            } else {
-                return [...prevSelectedTypes, type];
-            }
-        });
-    };
-
-    const handleMaterialChange = (material: string) => {
-        setSelectedMaterials((prevSelectedMaterials) => {
-            if (prevSelectedMaterials.includes(material)) {
-                return prevSelectedMaterials.filter(m => m !== material);
-            } else {
-                return [...prevSelectedMaterials, material];
-            }
-        });
-    };
-
-    const handleSizeChange = (size: string) => {
-        setSelectedSizes((prevSelectedSizes) => {
-            if (prevSelectedSizes.includes(size)) {
-                return prevSelectedSizes.filter(s => s !== size);
-            } else {
-                return [...prevSelectedSizes, size];
-            }
-        });
-    };
-
-    const handleStatusChange = (status: boolean) => {
-        setSelectedStatus((prevStatus) => {
-            if (prevStatus === status) {
-                return undefined; // Allow unselecting a status
-            }
-            return status;
-        });
-    };
-
-
+    const { isFilterModalOpen, setIsFilterModalOpen, resetKey, selectedStatus, handleMaterialChange, handleStatusChange, handleTypeChange, handleSizeChange,
+        filterCriteria, yearRange, handleYearChange, applyFilters, clearFilters } = useFilterModal();
 
     return (
         <>
