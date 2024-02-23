@@ -120,7 +120,7 @@ export const fetchArtById = async (id: number) => {
   const { data, error } = (await supabase.from('art').select('*').eq('id', id).single()) as { data: ArtModel; error: any };
 
   if (error) throw error;
-  return data;
+  return data as ArtModel;
 };
 
 /**
