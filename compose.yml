@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+    # Frontend port=3301
+    laszlopecsi-website:
+        container_name: laszlopecsi-website
+        image: laszlopecsi-website
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        ports:
+            - 3322:3000
+
+
+networks:
+    default:
+        name: PubWebpages
+        external: true

@@ -21,7 +21,7 @@ const Cards = () => {
             <div className='w-full max-w-[1240px] mx-auto mt-2 md:mt-3'>
                 {searchTerm && !hasFilterSet && (
                     <div className="text-sm sm:text-base md:text-lg font-medium font-body">
-                        ({numberOfSearchedArts}) results for "{searchTerm}"
+                        ({numberOfSearchedArts}) results for &quot;{searchTerm}&quot;
                     </div>
                 )}
                 {hasFilterSet && !searchTerm && (
@@ -31,7 +31,7 @@ const Cards = () => {
                 )}
                 {searchTerm && hasFilterSet && (
                     <div className="text-sm sm:text-base md:text-lg font-medium font-body">
-                        ({numberOfSearchedArts}) results for "{searchTerm}" and the applied filters
+                        ({numberOfSearchedArts}) results for &quot;{searchTerm}&quot; and the applied filters
                     </div>
                 )}
             </div>
