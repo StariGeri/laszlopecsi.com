@@ -20,9 +20,9 @@ const ImagesPreview = ({ images, onModalOpen }: ImagesPreviewProps) => {
     const displayedImages = images.slice(1, 4);
 
     return (
-        <div className="flex gap-2 md:gap-3 mt-2">
+        <div className="flex gap-2 mt-2 mx-auto">
             {displayedImages.map((image, index) => (
-                <Image key={index} src={image} alt="art" width={96} height={96} className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-cover" />
+                <Image key={index} src={image} alt="art" width={96} height={96} className="w-16 h-16 md:w-20 md:h-20 lg:w-22 lg:h-22 object-contain" />
             ))}
             <RestImages images={images} onModalOpen={onModalOpen} />
         </div>
@@ -46,9 +46,9 @@ const RestImages = ({ images, onModalOpen }: ImagesPreviewProps) => {
     return (
         <div
             onClick={onModalOpen}
-            className="relative flex items-center justify-center w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 cursor-pointer"
+            className="relative flex items-center justify-center w-16 h-16 md:w-20 md:h-20 lg:w-22 lg:h-22 cursor-pointer"
         >
-            <Image src={images[4]} alt="art" width={96} height={96} className="w-full h-full object-cover" />
+            <Image src={images[4]} alt="art" width={96} height={96} className="w-full h-full object-contain" />
             <div className="absolute w-full h-full flex justify-center items-center bg-black bg-opacity-60 text-white font-body font-semibold text-lg md:text-xl lg:text-[22px]">
                 +{imagesCount - 4}
             </div>

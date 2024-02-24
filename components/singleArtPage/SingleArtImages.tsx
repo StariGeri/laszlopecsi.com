@@ -24,14 +24,14 @@ const SingleArtImages = ({ images }: SingleArtImagesProps) => {
     };
 
     return (
-        <div className='imageContainer flex flex-col'>
+        <div className='imageContainer w-full md:w-1/2 flex flex-col mx-auto'>
             {/** Main Image */}
             <Image
                 src={images[0]}
-                alt="art" width={600} height={600}
-                className="w-full h-auto object-cover cursor-pointer"
+                alt="art" width={1000} height={1000}
+                className="h-full w-auto max-h-[420px] object-contain cursor-pointer"
                 onClick={openImageViewerModal}
-            />
+            /> 
             {/** More Images */}
             <ImagesPreview images={images} onModalOpen={openImageViewerModal} />
             {isModalOpen && <ImageModal images={images} closeImageViewer={closeImageViewerModal} />}
