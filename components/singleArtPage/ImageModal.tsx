@@ -52,7 +52,7 @@ const ImageModal = ({ images, closeImageViewer, isModalOpen }: ImageModalProps) 
                 >
                     <HiOutlineChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
-                <Image src={images[currentImageIndex]} alt="Art" width={800} height={800} className='w-full max-w-[800px] h-auto' />
+                <Image src={images[currentImageIndex]} alt="Art" width={500} height={600} className='w-full max-w-[500px] h-auto' />
                 <button
                     onClick={() => showNextImage()}
                     className={`absolute top-1/2 -right-5 rounded-full bg-white z-50 hover:bg-gray-200 transform -translate-y-1/2 p-3  ${images.length === 1 && 'hidden'}`}
