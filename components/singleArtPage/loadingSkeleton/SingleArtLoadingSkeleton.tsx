@@ -1,4 +1,4 @@
-import SingleArtCTA from "./SingleArtCTA";
+import SingleArtCTA from "../SingleArtCTA";
 
 const SingleArtLoadingSkeleton = () => {
 

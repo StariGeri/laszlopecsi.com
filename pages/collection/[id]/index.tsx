@@ -5,7 +5,7 @@ import { useFetchSingleArt } from '@/hooks/useFetchSingleArt';
 import SingleArtImages from '@/components/singleArtPage/SingleArtImages';
 import SingleArtDataSheet from '@/components/singleArtPage/SingleArtDataSheet';
 import SingleArtCTA from '@/components/singleArtPage/SingleArtCTA';
-import SingleArtLoadingSkeleton from '@/components/singleArtPage/SingleArtLoadingSkeleton';
+import SingleArtLoadingSkeleton from '@/components/singleArtPage/loadingSkeleton/SingleArtLoadingSkeleton';
 
 export default function ArtPage() {
 

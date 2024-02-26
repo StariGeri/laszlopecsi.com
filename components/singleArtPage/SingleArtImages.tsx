@@ -10,6 +10,11 @@ interface SingleArtImagesProps {
     images: string[];
 }
 
+/**
+ * @description This component is used to display the first image of an art piece as well as the rest of the images in small
+ * @param images - array of image urls
+ */
+
 const SingleArtImages = ({ images }: SingleArtImagesProps) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +39,7 @@ const SingleArtImages = ({ images }: SingleArtImagesProps) => {
             /> 
             {/** More Images */}
             <ImagesPreview images={images} onModalOpen={openImageViewerModal} />
-            {isModalOpen && <ImageModal images={images} closeImageViewer={closeImageViewerModal} />}
+            {isModalOpen && <ImageModal images={images} closeImageViewer={closeImageViewerModal} isModalOpen={isModalOpen} />}
         </div>
     );
 };

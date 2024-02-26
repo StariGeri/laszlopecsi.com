@@ -1,5 +1,5 @@
 //Dependencies
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 
 // Icons
@@ -8,9 +8,17 @@ import { HiOutlineChevronRight, HiOutlineChevronLeft, HiOutlineX } from "react-i
 interface ImageModalProps {
     images: string[];
     closeImageViewer: () => void;
+    isModalOpen: boolean;
 }
 
-const ImageModal = ({ images, closeImageViewer }: ImageModalProps) => {
+/**
+ * @description ImageModal component to display images in a modal
+ * @param images - array of image urls
+ * @param closeImageViewer - function to close the image modal
+ * @param isModalOpen - boolean to determine if the modal is open 
+ * @returns 
+ */
+const ImageModal = ({ images, closeImageViewer, isModalOpen }: ImageModalProps) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const showNextImage = () => {
@@ -20,6 +28,19 @@ const ImageModal = ({ images, closeImageViewer }: ImageModalProps) => {
     const showPrevImage = () => {
         setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
     };
+
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+
+        // cleanup
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isModalOpen]);
 
     return (
         <div className='fixed inset-0 flex items-center justify-center z-[100]'>
