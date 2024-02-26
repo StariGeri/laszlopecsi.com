@@ -39,8 +39,8 @@ const Footer = () => {
                     <div className="copyright hidden md:block">
                         <p className="text-white text-base font-body">© 2024 All rights reserved.</p>
                     </div>
-                    <Link href='/privacy-policy' className="font-body font-normal text-base text-white cursor-pointer hover:opacity-60 duration-200">Privacy Policy</Link>
-                    <Link href='/cookies' className="font-body font-normal text-base text-white cursor-pointer hover:opacity-60 duration-200">Cookies</Link>
+                    <Link href='/privacy-policy' target="_blank" className="font-body font-normal text-base text-white cursor-pointer hover:opacity-60 duration-200">Privacy Policy</Link>
+                    <Link href='/cookies' target="_blank" className="font-body font-normal text-base text-white cursor-pointer hover:opacity-60 duration-200">Cookies</Link>
                 </div>
                 <div className="w-fit mx-auto my-2 md:my-3 lg:my-4">
                     <Logo theme="light" isFull={true} />
