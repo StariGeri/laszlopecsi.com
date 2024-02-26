@@ -13,7 +13,7 @@ const Cards = () => {
 
     // if an error occurs, display the error message
     if (error) {
-        return <div className="text-center text-red-500">{error}</div>;
+        return <div className="text-center text-red-500 my-4 md:my-6 lg:my-8">{error}</div>;
     }
 
     return (

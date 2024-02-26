@@ -11,7 +11,7 @@ const SingleArtDataSheet = ({ art }: SingleArtDataSheetProps) => {
     const artDimension = `${art.dimensions[0]} x ${art.dimensions[1]} ${art.dimensions[2] !== undefined ? ` x ${art.dimensions[2]}` : ''}`;
 
     return (
-        <div className='dataSheetContainer w-full md:w-1/2 flex flex-col p-2 '>
+        <div className='dataSheetContainer w-full md:w-1/2 flex flex-col p-2'>
             {/** Title */}
             <h1 className='font-body font-semibold text-2xl lg:text-[28px] mb-2 md:mb-8'>{art.title}</h1>
             {/** DataSheet */}
