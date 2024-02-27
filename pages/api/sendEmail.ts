@@ -45,6 +45,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       // Configure nodemailer transport
       const transporter = nodemailer.createTransport({
         service: 'Gmail',
+        port: 587,
         auth: {
           user: process.env.NEXT_PUBLIC_EMAIL_USER,
           pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
@@ -64,7 +65,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       console.log('mailOptions: ', mailOptions);
 
       try {
+        console.log('trying to send the email');
         await transporter.sendMail(mailOptions);
+        console.log('email sent successfully');
         res.status(200).json({ message: 'Email sent successfully' });
       } catch (error) {
         res.status(500).json({ error: error });
