@@ -1,6 +1,9 @@
 // Dependencies
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Button from '../shared/Button';
+import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
+import Link from 'next/link';
 
 interface FormDataType {
     name: string;
@@ -47,73 +50,72 @@ const ContactForm = () => {
     }, [isSubmitted]);
 
     return (
-        <>
-            <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg mx-auto p-4">
-                <div className="mb-4">
+        <div className='flex flex-col w-full sm:w-1/2 p-2 md:p-4 lg:p-6'>
+            <h1 className="w-fit font-header font-semibold text-[26px] md:text-[35px] lg:text-[40px] sm:mb-2">Contact Us</h1>
+            <p className='text-lg md:text-xl lg:text-[22px] font-body mb:1 sm:mb-2'>Get in touch and let us know how we can help</p>
+            <form onSubmit={handleSubmit(onSubmit)} className="w-full my-4">
+                <div className="w-full flex items-center gap-2 md:gap-4 lg:gap-6 mb-2 md:mb-4 lg:mb-6">
                     <input
                         type="text"
                         {...register("name", { required: "Name is required" })}
                         placeholder="Name"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                        className="w-full bg-white sm:w-1/2 px-3 py-2 border-b-2 border-b-gray-300 focus:outline-none focus:border-b-black placeholder:font-body"
                     />
-                </div>
-                <div className="mb-4">
                     <input
                         type="email"
                         {...register("email", { required: "Email is required" })}
                         placeholder="Email"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                        className="w-full bg-white sm:w-1/2 px-3 py-2 border-b-2 border-b-gray-300 focus:outline-none focus:border-b-black placeholder:font-body"
                     />
                 </div>
-                <div className="mb-4">
+                <div className="w-full mb-2 md:mb-4 lg:md-6">
                     <input
                         type="text"
                         {...register("subject", { required: "Subject is required" })}
                         placeholder="Subject"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                        className="w-full bg-white px-3 py-2 border-b-2 border-b-gray-300 focus:outline-none focus:border-b-black placeholder:font-body"
                     />
                 </div>
-                <div className="">
+                <div className="w-full mb-2 md:mb-4 lg:md-6">
                     <textarea
                         {...register("message", { required: "Message is required" })}
                         placeholder="Your message"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                        className="w-full bg-white resize-none h-40 px-3 py-2 border-b-2 border-b-gray-300 focus:outline-none focus:border-b-black placeholder:font-body"
                     />
                 </div>
                 {errors.email || errors.name || errors.subject || errors.message ? (
-                    <p className="text-primaryRed text-sm md:text-base">Please fill out all required fields</p>
-                )
-                    : <></>
-                }
+                    <p className="text-primaryRed font-body text-sm md:text-base">Please fill out all required fields</p>
+                ) : <></>}
 
-                <div className="my-4">
+                <div className="w-full flex justify-between items-center gap-2 md:gap-4 my-4">
                     <label className="flex items-center">
                         <input
                             type="checkbox"
                             {...register("privacyPolicy", { required: "You must accept the privacy policy" })}
-                            className="form-checkbox h-4 w-4 text-blue-600"
+                            className="rounded-sm border-black w-4 h-4  md:w-5 md:h-5 accent-primaryOrange"
                         />
-                        <span className="ml-2">I accept the <a href="/privacy-policy" className="text-blue-600 hover:underline">privacy policy</a></span>
+                        <span className="ml-2 font-body">I accept the <Link href="/privacy-policy" target='_blank' className="text-primaryOrange hover:underline font-body">privacy policy</Link></span>
                     </label>
-                </div>
-                {errors.privacyPolicy ? (
-                    <p className="text-primaryRed text-sm md:text-base">You must accept the privacy policy</p>
-                )
-                    : <></>
-                }
-
-                <div className="mt-2 mb-4">
-                    <button type="submit" disabled={!isValid} className="w-full bg-blue-500 text-white py-2 px-4">
-                        Send Email
+                    <button
+                        type="submit"
+                        disabled={!isValid}
+                        className='flex items-center gap-2 border-[1.4px] border-opacity-60 border-slate-900 px-4 py-[6px] group'>
+                        <p className='text-black font-semibold lg:font-bold text-[18px] md:text-[20px] font-body'>Send</p>
+                        <HiOutlineArrowNarrowRight className="text-primaryOrange transition-transform duration-150 group-hover:translate-x-1 stroke-[2px] w-8 h-5" />
                     </button>
                 </div>
-            </form>
+                {
+                    errors.privacyPolicy ? (
+                        <p className="text-primaryRed text-sm md:text-base">You must accept the privacy policy</p>
+                    ) : <></>
+                }
+            </form >
             {showSuccessMessage && (
                 <div className="fixed w-full bottom-0 left-0 overflow-hidden mt-3 px-4 py-2 bg-green-100 text-primaryGreen rounded-md border text-center transition-opacity duration-1000 ease-out opacity-100">
                     Email sent successfully!
                 </div>
             )}
-        </>
+        </div >
     );
 };
 
