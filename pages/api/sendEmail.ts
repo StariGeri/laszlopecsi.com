@@ -5,12 +5,11 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import sanitizeHtml from 'sanitize-html';
 
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log('reached the sendEmail API');
 
-    const createEmailTemplate = (name: string, email: string, subject: string, message: string) => {
-        return `
+  const createEmailTemplate = (name: string, email: string, subject: string, message: string) => {
+    return `
           <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 20px; color: #333;">
             <div style="max-width: 600px; margin: auto; background: #ffffff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
               <header style="background-color: #D4A373; color: white; padding: 10px 20px; text-align: center;">
@@ -31,43 +30,53 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             </div>
           </div>
         `;
-    };
+  };
 
+  try {
     if (req.method === 'POST') {
-        const { name, email, subject, message } = req.body;
+      console.log('inside the if statement!');
+      const { name, email, subject, message } = req.body;
 
-        const sanitizedName = sanitizeHtml(name);
-        const sanitizedEmail = sanitizeHtml(email);
-        const sanitizedSubject = sanitizeHtml(subject);
-        const sanitizedMessage = sanitizeHtml(message);
+      const sanitizedName = sanitizeHtml(name);
+      const sanitizedEmail = sanitizeHtml(email);
+      const sanitizedSubject = sanitizeHtml(subject);
+      const sanitizedMessage = sanitizeHtml(message);
 
-        // Configure nodemailer transport
-        const transporter = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-                user: process.env.NEXT_PUBLIC_EMAIL_USER,
-                pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
-            },
-        });
+      // Configure nodemailer transport
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: process.env.NEXT_PUBLIC_EMAIL_USER,
+          pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
+        },
+      });
 
-        const mailOptions = {
-            from: `${process.env.NEXT_PUBLIC_EMAIL_USER}`, // Sender address: your own email
-            to: `${process.env.NEXT_PUBLIC_EMAIL_USER}`, // List of receivers: your own email
-            replyTo: sanitizedEmail, // Reply-to address set to the user's email
-            subject: `Inquiry through website: ${sanitizedSubject}`, // Subject line
-            html: createEmailTemplate(sanitizedName, sanitizedEmail, sanitizedSubject, sanitizedMessage), // HTML body
-        };
+      console.log('transporter: ', transporter);
 
-        try {
-            await transporter.sendMail(mailOptions);
-            res.status(200).json({ message: 'Email sent successfully' });
-        } catch (error) {
-            res.status(500).json({ error: error });
-            console.log(error);
-        }
+      const mailOptions = {
+        from: `${process.env.NEXT_PUBLIC_EMAIL_USER}`, // Sender address: your own email
+        to: `${process.env.NEXT_PUBLIC_EMAIL_USER}`, // List of receivers: your own email
+        replyTo: sanitizedEmail, // Reply-to address set to the user's email
+        subject: `Inquiry through website: ${sanitizedSubject}`, // Subject line
+        html: createEmailTemplate(sanitizedName, sanitizedEmail, sanitizedSubject, sanitizedMessage), // HTML body
+      };
+
+      console.log('mailOptions: ', mailOptions);
+
+      try {
+        await transporter.sendMail(mailOptions);
+        res.status(200).json({ message: 'Email sent successfully' });
+      } catch (error) {
+        res.status(500).json({ error: error });
+        console.log(error);
+      }
     } else {
-        // Handle any non-POST requests
-        res.setHeader('Allow', ['POST']);
-        res.status(405).end(`Method ${req.method} Not Allowed`);
+      // Handle any non-POST requests
+      res.setHeader('Allow', ['POST']);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
     }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error });
+  }
 };
