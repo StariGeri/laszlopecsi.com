@@ -13,7 +13,7 @@ const SingleArtDataSheet = ({ art }: SingleArtDataSheetProps) => {
     return (
         <div className='dataSheetContainer w-full md:w-1/2 flex flex-col p-2'>
             {/** Title */}
-            <h1 className='font-body font-semibold text-2xl lg:text-[28px] mb-2 md:mb-8'>{art.title}</h1>
+            <h1 className='font-body font-semibold text-2xl lg:text-[30px] mb-2 md:mb-8'>{art.title}</h1>
             {/** DataSheet */}
             <div className="flex flex-col">
                 {/** Year */}
