@@ -32,53 +32,49 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         `;
   };
 
-  try {
-    if (req.method === 'POST') {
-      console.log('inside the if statement!');
-      const { name, email, subject, message } = req.body;
+  if (req.method === 'POST') {
+    console.log('inside the if statement!');
+    const { name, email, subject, message } = req.body;
 
-      const sanitizedName = sanitizeHtml(name);
-      const sanitizedEmail = sanitizeHtml(email);
-      const sanitizedSubject = sanitizeHtml(subject);
-      const sanitizedMessage = sanitizeHtml(message);
+    const sanitizedName = sanitizeHtml(name);
+    const sanitizedEmail = sanitizeHtml(email);
+    const sanitizedSubject = sanitizeHtml(subject);
+    const sanitizedMessage = sanitizeHtml(message);
 
-      // Configure nodemailer transport
-      const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          user: process.env.NEXT_PUBLIC_EMAIL_USER,
-          pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
-        },
-      });
+    // Configure nodemailer transport
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: process.env.NEXT_PUBLIC_EMAIL_USER,
+        pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
+      },
+    });
 
-      console.log('transporter: ', transporter);
+    console.log('transporter: ', transporter);
 
-      const mailOptions = {
-        from: `${process.env.NEXT_PUBLIC_EMAIL_USER}`, // Sender address: your own email
-        to: `${process.env.NEXT_PUBLIC_EMAIL_USER}`, // List of receivers: your own email
-        replyTo: sanitizedEmail, // Reply-to address set to the user's email
-        subject: `Inquiry through website: ${sanitizedSubject}`, // Subject line
-        html: createEmailTemplate(sanitizedName, sanitizedEmail, sanitizedSubject, sanitizedMessage), // HTML body
-      };
+    const mailOptions = {
+      from: `${process.env.NEXT_PUBLIC_EMAIL_USER}`, // Sender address: your own email
+      to: `${process.env.NEXT_PUBLIC_EMAIL_USER}`, // List of receivers: your own email
+      replyTo: sanitizedEmail, // Reply-to address set to the user's email
+      subject: `Inquiry through website: ${sanitizedSubject}`, // Subject line
+      html: createEmailTemplate(sanitizedName, sanitizedEmail, sanitizedSubject, sanitizedMessage), // HTML body
+    };
 
-      console.log('mailOptions: ', mailOptions);
+    console.log('mailOptions: ', mailOptions);
 
-      try {
-        console.log('trying to send the email');
-        transporter.sendMail(mailOptions); //await
-        console.log('email sent successfully');
-        res.status(200).json({ message: 'Email sent successfully' });
-      } catch (error) {
+    // Send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log('error: ', error);
         res.status(500).json({ error: error });
-        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.status(200).json({ message: 'Email sent successfully!' });
       }
-    } else {
-      // Handle any non-POST requests
-      res.setHeader('Allow', ['POST']);
-      res.status(405).end(`Method ${req.method} Not Allowed`);
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: error });
+    });
+  } else {
+    // Handle any non-POST requests
+    res.setHeader('Allow', ['POST']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 };
