@@ -7,6 +7,7 @@ import sanitizeHtml from 'sanitize-html';
 
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log('reached the sendEmail API');
 
     const createEmailTemplate = (name: string, email: string, subject: string, message: string) => {
         return `
