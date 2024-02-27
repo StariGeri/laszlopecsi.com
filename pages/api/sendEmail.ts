@@ -45,7 +45,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       // Configure nodemailer transport
       const transporter = nodemailer.createTransport({
         service: 'Gmail',
-        port: 587,
+        debug: true,
+        logger: true,
         auth: {
           user: process.env.NEXT_PUBLIC_EMAIL_USER,
           pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
