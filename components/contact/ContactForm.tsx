@@ -1,9 +1,13 @@
 // Dependencies
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import Button from '../shared/Button';
-import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import Link from 'next/link';
+
+// 3rd party libraries
+import { useForm } from 'react-hook-form';
+
+// Icons
+import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
+
 
 interface FormDataType {
     name: string;

@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const { requestId } = await courier.send({
         message: {
           to: {
-            email: 'sgergostarosta@gmail.com',
+            email: 'laszlopecsicollection@gmail.com',
           },
           template: 'Z85M4HS9MHMP58J906CK1QP5QEV9',
           data: {
