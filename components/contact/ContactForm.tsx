@@ -47,8 +47,8 @@ const ContactForm = () => {
 
     useEffect(() => {
         if (isSubmitted) {
-            // reset the form
             setIsSubmitted(false);
+            // reset the form
             reset();
         }
     }, [isSubmitted]);
