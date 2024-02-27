@@ -12,7 +12,7 @@ const ScrollToTop = () => {
             className={`fixed bottom-5 right-5 ${isVisible ? 'block' : 'hidden'} bg-primaryOrange text-white p-2 rounded`}
             aria-label="Scroll to top"
         >
-            <HiChevronUp className="w-4 h-4 md:w-6 md:h-6" />
+            <HiChevronUp className="w-6 h-6" />
         </button>
     );
 };

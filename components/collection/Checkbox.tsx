@@ -13,7 +13,7 @@ const Checkbox = ({ label, name, value, onChange, checked,defaultChecked }: Chec
         <div className="flex items-center gap-2">
             <input
                 type="checkbox"
-                className="rounded-sm border-black w-4 h-4  md:w-5 md:h-5 accent-primaryOrange"
+                className="rounded-sm border-black w-5 h-5 accent-primaryOrange"
                 name={name}
                 id={name}
                 value={value}

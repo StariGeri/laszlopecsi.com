@@ -5,11 +5,20 @@ import { useActiveLink } from '@/hooks/useActiveLink';
 import FacebookIcon from '../shared/FacebookIcon';
 import InstagramIcon from '../shared/InstagramIcon';
 import { MenuItems } from '@/constants/Menu';
+import { useEffect } from 'react';
+
+interface MobileNavProps {
+    setIsMobileMenuOpen: (isOpen: boolean) => void;
+}
 
 
-const MobileNav = () => {
+const MobileNav = ({ setIsMobileMenuOpen }: MobileNavProps) => {
 
     const { activeLink } = useActiveLink();
+
+    const handleMenuItemClick = () => {
+        setIsMobileMenuOpen(false);
+    };
 
     return (
         <motion.div
@@ -26,15 +35,16 @@ const MobileNav = () => {
                             <motion.li
                                 variants={menuItemVariants}
                                 className={`uppercase font-body font-medium text-[24px] sm:text-[40px] py-4 sm:py-2 ${activeLink === item.url ? 'text-primaryOrange' : 'text-black'}`}
-                                key={index}>
-                                <Link href={item.url}>
+                                key={index}
+                                >
+                                <Link href={item.url} onClick={handleMenuItemClick}>
                                     <h1>{item.title}</h1>
                                 </Link>
                             </motion.li>
                         ))}
                     </ul>
                     <motion.div
-                        className='socialIcons flex flex-col items-end justify-end gap-5 mt-auto mb-5'
+                        className='socialIcons flex flex-col items-end justify-end gap-5 mt-auto mb-10'
                         variants={menuItemVariants}>
                         <FacebookIcon isOutlined={false} color='light' />
                         <InstagramIcon isOutlined={false} color='light' />

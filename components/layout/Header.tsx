@@ -7,7 +7,7 @@ import { useHeader } from "@/hooks/useHeader";
 
 const Header = () => {
 
-    const { isMobileMenuOpen, isScrolled, handleMobileMenu } = useHeader();
+    const { isMobileMenuOpen, setIsMobileMenuOpen, isScrolled, handleMobileMenu } = useHeader();
 
     return (
         <div className={`fixed w-full px-3 md:px-5 z-20 ${isScrolled && 'bg-opacity-50 backdrop-filter backdrop-blur-md'}`}>
@@ -16,7 +16,7 @@ const Header = () => {
                 <NavItems />
                 <HamburgerMenu onClick={handleMobileMenu} isOpen={isMobileMenuOpen} />
                 <AnimatePresence mode="wait">
-                    {isMobileMenuOpen ? (<MobileNav />) : null}
+                    {isMobileMenuOpen ? (<MobileNav setIsMobileMenuOpen={setIsMobileMenuOpen} />) : null}
                 </AnimatePresence>
             </div>
         </div>

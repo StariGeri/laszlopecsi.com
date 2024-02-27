@@ -23,7 +23,7 @@ const MarqueeText = ({ direction }: MarqueeTextProps) => {
                 <motion.div 
                     key={index} 
                     className="flex items-center"
-                    style={{ x: xPosition, transition: 'transform 0.8s linear'}}>
+                    style={{ x: xPosition, transition: 'transform 0.8s linear',whiteSpace: 'nowrap'}}>
                     <p className="text-[22px] md:text-[34px] lg:text-[50px] font-header font-bold opacity-80 text-nowrap">{string}</p>
                     <div className='w-3 h-3 rounded-full bg-primaryOrange bg-opacity-30 ml-4'></div>
                 </motion.div>

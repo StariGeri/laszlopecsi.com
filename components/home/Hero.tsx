@@ -2,6 +2,8 @@
 import Image from 'next/image';
 import React from 'react';
 
+import { motion } from 'framer-motion';
+
 import Button from '../shared/Button';
 import FacebookIcon from '../shared/FacebookIcon';
 import InstagramIcon from '../shared/InstagramIcon';
@@ -43,13 +45,14 @@ const HeroSection = () => {
       <Image src={heroImages[2]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover hidden xl:block' />
       <Image src={heroImages[3]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-full md:max-h-[400px] w-auto xl:w-full xl:aspect-square object-cover hidden xl:block' />
       {/**MOBILE - TABLET - SMALL LAPTOP */}
-      <div className='relative w-screen flex xl:hidden gap-3 overflow-x-scroll'>
+      <motion.div
+        className='relative w-screen flex xl:hidden gap-3 overflow-x-scroll hide-scrolbar'>
         <Image src={heroImages[4]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
         <Image src={heroImages[0]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
         <Image src={heroImages[1]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
         <Image src={heroImages[2]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
         <Image src={heroImages[3]} alt='Artwork of Laszlo Pecsi' width={250} height={340} className='h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-auto object-cover' />
-      </div>
+      </motion.div>
     </div>
   );
 };

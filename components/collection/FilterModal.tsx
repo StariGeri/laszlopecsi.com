@@ -34,7 +34,7 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
             {/**BackgroundOverlay */}
             {isFilterModalOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-30" onClick={() => setIsFilterModalOpen(false)}></div>}
             {/**Modal */}
-            <div key={resetKey} className="fixed w-full md:max-w-[550px] h-fit inset-0 m-auto bg-white flex flex-col justify-center items-center z-50 rounded-lg p-2 md:p-4 lg:p-5">
+            <div key={resetKey} className="fixed w-[98%] sm:max-w-[550px] h-fit inset-0 m-auto bg-white flex flex-col justify-center items-center z-50 rounded-lg p-2 md:p-4 lg:p-5">
                 {/** Modal header */}
                 <div className="w-full h-fit flex justify-between items-center pb-2 border-b border-b-black">
                     <div className="flex items-center gap-2 md:gap-3">

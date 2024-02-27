@@ -13,5 +13,6 @@ export const useActiveLink = () => {
     setActiveLink(`/${path}`);
   }, [router.pathname]);
 
+
   return { activeLink };
 };
