@@ -72,6 +72,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(200).json({ message: 'Email sent successfully!' });
       }
     });
+    // Close the transporter
+    transporter.close();
   } else {
     // Handle any non-POST requests
     res.setHeader('Allow', ['POST']);
