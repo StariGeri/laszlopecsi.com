@@ -54,10 +54,10 @@ const ContactForm = () => {
     }, [isSubmitted]);
 
     return (
-        <div className='flex flex-col w-full sm:w-1/2 p-2 md:p-4 lg:p-6'>
+        <div className='flex flex-col w-full sm:w-2/3 p-2 md:p-4 lg:p-6'>
             <h1 className="w-fit font-header font-semibold text-[26px] md:text-[35px] lg:text-[40px] sm:mb-2">Contact Us</h1>
-            <p className='text-lg md:text-xl lg:text-[22px] font-body mb:1 sm:mb-2'>Get in touch and let us know how we can help</p>
-            <form onSubmit={handleSubmit(onSubmit)} className="w-full my-4">
+            <p className='text-lg md:text-xl lg:text-[22px] font-body mb-2'>Get in touch and let us know how we can help</p>
+            <form onSubmit={handleSubmit(onSubmit)} className="w-full sm:my-4">
                 <div className="w-full flex items-center gap-2 md:gap-4 lg:gap-6 mb-2 md:mb-4 lg:mb-6">
                     <input
                         type="text"
@@ -80,7 +80,7 @@ const ContactForm = () => {
                         className="w-full bg-white px-3 py-2 border-b-2 border-b-gray-300 focus:outline-none focus:border-b-black placeholder:font-body"
                     />
                 </div>
-                <div className="w-full mb-2 md:mb-4 lg:md-6">
+                <div className="w-full mb-2 md:mb-4">
                     <textarea
                         {...register("message", { required: "Message is required" })}
                         placeholder="Your message"
@@ -88,7 +88,7 @@ const ContactForm = () => {
                     />
                 </div>
                 {errors.email || errors.name || errors.subject || errors.message ? (
-                    <p className="text-primaryRed font-body text-sm md:text-base">Please fill out all required fields</p>
+                    <p className="text-primaryRed font-body text-sm md:text-base h-8">Please fill out all required fields</p>
                 ) : <></>}
 
                 <div className="w-full flex justify-between items-center gap-2 md:gap-4 my-4">
@@ -110,7 +110,7 @@ const ContactForm = () => {
                 </div>
                 {
                     errors.privacyPolicy ? (
-                        <p className="text-primaryRed text-sm md:text-base">You must accept the privacy policy</p>
+                        <p className="text-primaryRed text-sm md:text-base h-8">You must accept the privacy policy</p>
                     ) : <></>
                 }
             </form >
