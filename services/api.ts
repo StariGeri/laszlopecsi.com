@@ -115,13 +115,25 @@ export const fetchArtCount = async (searchTerm = '', filters: FilterType) => {
  * @returns Single art: ArtModel
  */
 export const fetchArtById = async (id: number) => {
-  const supabase = connectToSupabase();
-
   const { data, error } = (await supabase.from('art').select('*').eq('id', id).single()) as { data: ArtModel; error: any };
 
   if (error) throw error;
   return data as ArtModel;
 };
+
+/**
+ * @description Function to fetch the arts for the carousel
+ * @returns Carousel items
+ */
+
+export const fetchCarouselItems = async (ids: number[]) => {
+  const { data, error } = await supabase.from('art').select('*').in('id', ids);
+
+  if (error) throw error;
+
+  return data as ArtModel[];
+};
+
 
 /**
  * @description Function to fetch all the types for filtering

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { SlideModel } from '@/types/SlideModel';
 import Slide from './Slide';
 import Button from '../Button';
 import { HiOutlineArrowNarrowLeft, HiOutlineArrowNarrowRight } from 'react-icons/hi';
+import { ArtModel } from '@/types/ArtModel';
 
 interface CarouselProps {
-    items: SlideModel[];
+    items: ArtModel[];
 }
 
 const Carousel = ({ items }: CarouselProps) => {
@@ -15,7 +15,7 @@ const Carousel = ({ items }: CarouselProps) => {
     const goNext = () => setActiveIndex((prev) => prev === items.length - 1 ? 0 : prev + 1);
 
     return (
-        <div className="w-full md:w-fit md:max-w-[1240px] flex flex-col md:mx-auto my-8 md:my-12 lg:my-24">
+        <div className="w-full md:w-fit md:max-w-[1000px] flex flex-col md:mx-auto my-8 md:my-12 lg:my-24">
             <div className='w-full flex justify-center items-center gap-4 md:px-4'>
                 <button onClick={goPrev} className="hidden md:flex items-center justify-center w-10 h-10 bg-black text-white rounded-full">
                     <HiOutlineArrowNarrowLeft className="text-white transition-transform duration-150 group-hover:translate-x-1 stroke-[2px] w-8 h-5" />
