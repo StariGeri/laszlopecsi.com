@@ -12,11 +12,11 @@ import Blob from '@/components/shared/Blob';
 const HeroSection = () => {
 
   const heroImages = [
-    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/collection/test1.JPG',
-    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/collection/test2.JPG',
-    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/collection/test3.JPG',
-    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/collection/test4.JPG',
-    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/collection/test5.JPG'
+    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/hero_images/hero1.jpg',
+    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/hero_images/hero2.jpg',
+    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/hero_images/hero3.jpg',
+    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/hero_images/hero4.jpg',
+    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/hero_images/hero5.jpg',
   ];
 
   return (

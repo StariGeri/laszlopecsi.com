@@ -22,7 +22,7 @@ const Slide = ({ slide, isDragging }: SlideProps) => {
         <div onClick={handleClick} className="w-full flex flex-col sm:flex-row cursor-pointer">
             <Image src={slide.images[0]} alt={slide.title} width={500} height={500}
                 draggable={false}
-                className='w-full h-auto max-h-[300px] sm:w-[350px] lg:w-[400px] object-cover'
+                className='w-full h-auto max-h-[300px] sm:max-h-[260px] sm:w-[350px] lg:w-[400px] object-cover'
             />
             <div className='p-2 md:p-3 lg:p-4 flex flex-col gap-2 justify-between w-full sm:w-1/2 select-none'>
                 <h3 className="font-header font-semibold text-[18px] md:text-[22px] lg:text-[26px]">{slide.title}</h3>

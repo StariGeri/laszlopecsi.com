@@ -12,6 +12,12 @@ const nextConfig = {
         port: '',
         pathname: '/storage/v1/object/public/artImages/collection/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'vssapevldqrtycxdjgjt.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/artImages/hero_images/**',
+      },
     ],
   },
   output: "standalone",
