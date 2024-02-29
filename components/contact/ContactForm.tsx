@@ -2,56 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-// 3rd party libraries
-import { useForm } from 'react-hook-form';
-
 // Icons
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 
+// hooks
+import { useContactForm } from '@/hooks/useContactForm';
 
-interface FormDataType {
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-    privacyPolicy: boolean;
-}
 
 const ContactForm = () => {
-    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm<FormDataType>({
-        mode: 'onChange',
-    });
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
-    const onSubmit = async (data: FormDataType) => {
-        // Call the API to send the email
-        const response = await fetch('/api/sendEmail', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-            setIsSubmitted(true);
-            setShowSuccessMessage(true);
-            setTimeout(() => setShowSuccessMessage(false), 3000);
-        } else {
-            // Handle error
-            console.log('Error sending email');
-        }
-    };
-
-    useEffect(() => {
-        if (isSubmitted) {
-            setIsSubmitted(false);
-            // reset the form
-            reset();
-        }
-    }, [isSubmitted]);
+    const { register, handleSubmit, errors, showSuccessMessage, onSubmit, isValid } = useContactForm();
 
     return (
         <div className='flex flex-col w-full sm:w-2/3 p-2 md:p-4 lg:p-6'>

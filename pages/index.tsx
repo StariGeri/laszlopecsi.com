@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 // Components
 import About from "@/components/home/About";
@@ -11,13 +11,17 @@ import CookieConsentModal from "@/components/cookies/CookieModal";
 // Types
 import { ArtModel } from "@/types/ArtModel";
 
+// Hooks
+import { useCookieModal } from "@/hooks/useCookieModal";
+
 // Services
 import { fetchCarouselItems } from "@/services/api";
 import useAsyncEffect from "use-async-effect";
 
 const Home = () => {
 
-  const [showCookieModal, setShowCookieModal] = useState(false);
+  const { showCookieModal, handleConsent } = useCookieModal();
+
   const [carouselItems, setCarouselItems] = useState<ArtModel[]>();
 
   // fetch the 8,12,13,14 id arts from the database
@@ -30,17 +34,6 @@ const Home = () => {
 
   }, []);
 
-  useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent');
-    if (consent !== 'true') {
-      setShowCookieModal(true);
-    }
-  }, []);
-
-  const handleConsent = () => {
-    localStorage.setItem('cookieConsent', 'true');
-    setShowCookieModal(false);
-  };
 
   return (
     <div className="overflow-hidden px-3 md:px-6 lg:px-10">

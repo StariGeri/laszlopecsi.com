@@ -1,23 +1,20 @@
-// components/HeroSection.tsx
+// Dependencies
 import Image from 'next/image';
 import React from 'react';
 
+// 3rd Party libs
 import { motion } from 'framer-motion';
 
+// Components
 import Button from '../shared/Button';
 import FacebookIcon from '../shared/FacebookIcon';
 import InstagramIcon from '../shared/InstagramIcon';
 import Blob from '@/components/shared/Blob';
 
-const HeroSection = () => {
+// Components
+import { heroImages } from '@/constants/HeroImages';
 
-  const heroImages = [
-    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/hero_images/hero1.jpg',
-    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/hero_images/hero2.jpg',
-    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/hero_images/hero3.jpg',
-    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/hero_images/hero4.jpg',
-    'https://vssapevldqrtycxdjgjt.supabase.co/storage/v1/object/public/artImages/hero_images/hero5.jpg',
-  ];
+const HeroSection = () => {
 
   return (
     <div className="relative w-full max-w-[1240px] lg:mx-auto xl:grid xl:grid-cols-3 mt-2 md:mt-4 lg:mt-8 md:gap-6 lg:gap-8 xl:gap-10">
