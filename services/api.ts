@@ -23,7 +23,7 @@ const supabase = connectToSupabase();
  * @description Function to fetch the arts based on the search term
  * @returns All arts: ArtModel[]
  */
-export const fetchArts = async (searchTerm = '', filters: FilterType) => {
+export const fetchArts = async (searchTerm = '', filters: FilterType, offset = 0, limit = 10) => {
   let query = supabase.from('art').select('id,title,status,dimensions,year,images').order('title', { ascending: true });
 
   const searchParam = searchTerm.toLowerCase();
@@ -56,6 +56,8 @@ export const fetchArts = async (searchTerm = '', filters: FilterType) => {
   if (filters.yearRange[0] !== 0 || filters.yearRange[1] !== 0) {
     query = query.gte('year', filters.yearRange[0]).lte('year', filters.yearRange[1]);
   }
+
+  query = query.range(offset, offset + limit - 1);
 
   const { data, error } = await query;
 
@@ -133,7 +135,6 @@ export const fetchCarouselItems = async (ids: number[]) => {
 
   return data as ArtModel[];
 };
-
 
 /**
  * @description Function to fetch all the types for filtering

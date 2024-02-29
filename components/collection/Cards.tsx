@@ -4,12 +4,15 @@ import React from 'react';
 // Components
 import ArtCard from "./ArtCard";
 import LoadingSkeleton from './loadingSkeleton/LoadingSkeleton';
+import Pagination from './Pagination';
+
+// Hooks
 import { useFetchArts } from '@/hooks/useFetchArts';
 
 
 const Cards = () => {
 
-    const { error, searchTerm, hasFilterSet, numberOfSearchedArts, isLoading, arts } = useFetchArts();
+    const { error, searchTerm, hasFilterSet, numberOfSearchedArts, isLoading, arts, totalPages, setCurrentPage, currentPage } = useFetchArts();
 
     // if an error occurs, display the error message
     if (error) {
@@ -35,6 +38,7 @@ const Cards = () => {
                     </div>
                 )}
             </div>
+            {/**CARDS */}
             {isLoading ? (
                 <LoadingSkeleton />
             ) : (
@@ -44,6 +48,8 @@ const Cards = () => {
                     ))}
                 </div>
             )}
+            {/**PAGINATION */}
+            <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
         </>
     );
 }
