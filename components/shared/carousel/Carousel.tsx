@@ -10,12 +10,77 @@ interface CarouselProps {
 
 const Carousel = ({ items }: CarouselProps) => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    const [isDragging, setIsDragging] = useState(false);
 
+    // functions to to switch between slides
     const goPrev = () => setActiveIndex((prev) => prev === 0 ? items.length - 1 : prev - 1);
     const goNext = () => setActiveIndex((prev) => prev === items.length - 1 ? 0 : prev + 1);
 
+    // Minimum swipe distance (in pixels) to trigger slide change
+    const minSwipeDistance = 50;
+
+    const handleTouchStart = (e: any) => {
+        setTouchEnd(null); // Reset touchEnd to null on new touch
+        setTouchStart(e.targetTouches[0].clientX);
+    }
+
+    const handleTouchMove = (e: any) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    }
+
+    const handleTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        if (isLeftSwipe) {
+            goNext();
+        } else if (isRightSwipe) {
+            goPrev();
+        }
+    }
+
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        setTouchEnd(null);
+        setTouchStart(e.clientX);
+        setIsDragging(true);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (isDragging) {
+            setTouchEnd(e.clientX);
+        }
+    };
+
+    const handleMouseUp = () => {
+        if (!touchStart || touchEnd === null) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        if (isLeftSwipe) {
+            goNext();
+        } else if (isRightSwipe) {
+            goPrev();
+        }
+        setIsDragging(false);
+    };
+
+
     return (
-        <div className="w-full md:w-fit md:max-w-[1000px] flex flex-col md:mx-auto my-8 md:my-12 lg:my-24">
+        <div
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp} // To handle the case when the mouse leaves the component
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            className="w-full md:w-fit md:max-w-[1000px] flex flex-col md:mx-auto my-8 md:my-12 lg:my-24"
+        >
             <div className='w-full flex justify-center items-center gap-4 md:px-4'>
                 <button onClick={goPrev} className="hidden md:flex items-center justify-center w-10 h-10 bg-black text-white rounded-full">
                     <HiOutlineArrowNarrowLeft className="text-white transition-transform duration-150 group-hover:translate-x-1 stroke-[2px] w-8 h-5" />
@@ -24,7 +89,7 @@ const Carousel = ({ items }: CarouselProps) => {
                     <div className="flex h-fit transition-transform duration-300" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
                         {items.map((item) => (
                             <div key={item.id} className="w-full h-full flex-shrink-0">
-                                <Slide slide={item} />
+                                <Slide slide={item} isDragging={isDragging} />
                             </div>
                         ))}
                     </div>

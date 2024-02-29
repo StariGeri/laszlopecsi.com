@@ -41,7 +41,7 @@ const RestImages = ({ images, onModalOpen }: ImagesPreviewProps) => {
 
     const imagesCount = images.length;
 
-    if (imagesCount < 4) return <></>;
+    if (imagesCount < 5) return <></>;
 
     return (
         <div
