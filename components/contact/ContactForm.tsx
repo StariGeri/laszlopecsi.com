@@ -16,20 +16,20 @@ const ContactForm = () => {
     return (
         <div className='flex flex-col w-full sm:w-2/3 p-2 md:p-4 lg:p-6'>
             <h1 className="w-fit font-header font-semibold text-[26px] md:text-[35px] lg:text-[40px] sm:mb-2">Contact Us</h1>
-            <p className='text-lg md:text-xl lg:text-[22px] font-body mb-2'>Get in touch and let us know how we can help</p>
+            <p className='text-lg md:text-xl lg:text-[22px] font-body mb-3 lg:mb-2'>Get in touch and let us know how we can help</p>
             <form onSubmit={handleSubmit(onSubmit)} className="w-full sm:my-4">
                 <div className="w-full flex items-center gap-2 md:gap-4 lg:gap-6 mb-2 md:mb-4 lg:mb-6">
                     <input
                         type="text"
                         {...register("name", { required: "Name is required" })}
                         placeholder="Name"
-                        className="w-full bg-white sm:w-1/2 px-3 py-2 border-b-2 border-b-gray-300 focus:outline-none focus:border-b-black placeholder:font-body"
+                        className="w-full bg-white sm:w-1/2 px-3 py-2 border-b-2 border-b-black focus:outline-none focus:border-b-primaryOrange placeholder:font-body"
                     />
                     <input
                         type="email"
                         {...register("email", { required: "Email is required" })}
                         placeholder="Email"
-                        className="w-full bg-white sm:w-1/2 px-3 py-2 border-b-2 border-b-gray-300 focus:outline-none focus:border-b-black placeholder:font-body"
+                        className="w-full bg-white sm:w-1/2 px-3 py-2 border-b-2 border-b-black focus:outline-none focus:border-b-primaryOrange placeholder:font-body"
                     />
                 </div>
                 <div className="w-full mb-2 md:mb-4 lg:md-6">
@@ -37,14 +37,14 @@ const ContactForm = () => {
                         type="text"
                         {...register("subject", { required: "Subject is required" })}
                         placeholder="Subject"
-                        className="w-full bg-white px-3 py-2 border-b-2 border-b-gray-300 focus:outline-none focus:border-b-black placeholder:font-body"
+                        className="w-full bg-white px-3 py-2 border-b-2 border-b-black focus:outline-none focus:border-b-primaryOrange placeholder:font-body"
                     />
                 </div>
                 <div className="w-full mb-2 md:mb-4">
                     <textarea
                         {...register("message", { required: "Message is required" })}
                         placeholder="Your message"
-                        className="w-full bg-white resize-none h-40 px-3 py-2 border-b-2 border-b-gray-300 focus:outline-none focus:border-b-black placeholder:font-body"
+                        className="w-full bg-white resize-none h-40 px-3 py-2 border-b-2 border-b-black focus:outline-none focus:border-b-primaryOrange placeholder:font-body"
                     />
                 </div>
                 {errors.email || errors.name || errors.subject || errors.message ? (
