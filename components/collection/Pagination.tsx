@@ -25,15 +25,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }: PaginationProps
                         <HiOutlineChevronLeft className="w-6 h-6 md:w-7 md:h-7" />
                     </button>
 
-                    {Array.from({ length: totalPages }, (_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => handlePageChange(index + 1)}
-                            className={`font-semibold font-body text-2xl md:text-3xl ${currentPage === index + 1 ? 'text-black' : 'text-gray-400'}`}
-                        >
-                            {index + 1}
-                        </button>
-                    ))}
+                    <h3 className='font-body text-xl md:text-2xl'>{currentPage} of {totalPages}</h3>
 
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}

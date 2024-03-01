@@ -83,7 +83,7 @@ export default function ArtistPage() {
             <AboutArtist />
             <Biography />
             <MapSection />
-            <div className="w-full max-w-[1000px] mx-auto flex flex-col my-8 md:my-12 lg:my-24">
+            <div className="w-full max-w-[1000px] mx-auto flex flex-col mt-8 md:mt-12 lg:mt-24">
                 {isViewerOpen && <PDFViewer pdfImages={currentPdfImages} isViewerOpen={isViewerOpen} closePdfViewer={closePdfViewer} />}
                 <ArtistAccordions catalogs={catalogs} />
             </div>
