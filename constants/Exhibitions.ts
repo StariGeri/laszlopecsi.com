@@ -1,0 +1,18 @@
+export const exhibitions: string[] = [
+  '1957. National Salon, Budapest World Youth Meeting',
+  '1961. Csók Gallery, Budapest',
+  '1962. Hungarian Applied Art, Prague',
+  '1963. Hungarian Applied Art,Torino',
+  '1965. World Crafts Council, New York, USA',
+  '1966. Hungarian Applied Art Today, Budapest',
+  '1968. Hungarian Applied Art, Moscow',
+  '1968. Hungarian Applied Art, Bucuresti',
+  '1968. Hungarian Applied Art, Rome',
+  '1969. Hungarian Applied Art, Cairo',
+  '1969. Exhibition of Fine Art and Applied Art, Rothenburg (FRG)',
+  '1969. Exhibition of Fine Art and Applied Art, Paris',
+  '1969. Exhibition of Fine Art and Applied Art, Prague',
+  "1975. Galerie Sin'Paora, Paris",
+  '1976. Museum of Applied Art, Budapest',
+  '1979. Kronach (FRG)',
+];
