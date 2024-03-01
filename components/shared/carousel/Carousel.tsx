@@ -20,16 +20,11 @@ interface CarouselProps {
 
 const Carousel = ({ items }: CarouselProps) => {
 
-    const { activeIndex, setActiveIndex, isDragging, handleMouseDown, handleMouseMove,
-        handleMouseUp, handleTouchStart, handleTouchMove, handleTouchEnd, goPrev, goNext } = useCarousel(items);
+    const { activeIndex, setActiveIndex, isDragging, handleTouchStart, handleTouchMove, handleTouchEnd, goPrev, goNext } = useCarousel(items);
 
 
     return (
         <div
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp} // To handle the case when the mouse leaves the component
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}

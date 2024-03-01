@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-const { hostname } = require('os');
-
 
 const nextConfig = {
   images: {

@@ -12,13 +12,18 @@ const Accordion = ({ title, children }: AccordionProps) => {
 
     const toggleOpen = () => setIsOpen(!isOpen);
 
+    const variants = {
+        open: { opacity: 1, maxHeight: 1000 }, // Adjust maxHeight as needed
+        collapsed: { opacity: 0, maxHeight: 0 }
+    };
+
     return (
         <div className="w-full border-b border-b-black">
-            <div className="flex justify-between items-center cursor-pointer bg-background" onClick={toggleOpen}>
-                <h1 className="font-header font-medium text-[26px] md:text-[32px] lg:text-[36px] mb-2">
+            <div className="flex justify-between items-center cursor-pointer bg-background py-2" onClick={toggleOpen}>
+                <h1 className="font-header font-semibold text-[26px] md:text-[32px] lg:text-[36px]">
                     {title}
                 </h1>
-                {isOpen ? <HiChevronUp className="w-6 h-6" /> : <HiChevronDown className="w-6 h-6" />}
+                <HiChevronDown className={`w-6 h-6 lg:w-7 lg:h-7 ${isOpen ? 'rotate-0' : '-rotate-90'} transition-all duration-150`} />
             </div>
             <AnimatePresence initial={false}>
                 {isOpen && (
@@ -26,11 +31,8 @@ const Accordion = ({ title, children }: AccordionProps) => {
                         initial="collapsed"
                         animate="open"
                         exit="collapsed"
-                        variants={{
-                            open: { height: 'auto', opacity: 1 },
-                            collapsed: { height: 0, opacity: 0}
-                        }}
-                        transition={{ duration: 0.3 }}
+                        variants={variants}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
                         className='px-2 md:px-3 bg-background'
                     >
                         {children}

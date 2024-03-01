@@ -2,15 +2,27 @@
 
 // Dependencies
 import { useState } from "react";
+import useAsyncEffect from "use-async-effect";
 
 // Constants
 import { exhibition_1983, hungarian_applied_arts, life_work_exhibition, memorial_exhibition } from "@/constants/PDFImages";
 
 // Components
 import PDFViewer from "@/components/artist/pdfViewer/PDFViewer";
-import { CatalogModel } from "@/components/artist/catalogs/CatalogItem";
 import Catalogs from "@/components/artist/catalogs/Catalogs";
 import Exhibitions from "@/components/artist/Exhibitions";
+import Carousel from "@/components/shared/carousel/Carousel";
+import MapSection from "@/components/artist/MapSection";
+import AboutArtist from "@/components/artist/AboutArtist";
+
+// Services
+import { fetchCarouselItems } from "@/services/api";
+
+// Types
+import { ArtModel } from "@/types/ArtModel";
+import { CatalogModel } from "@/components/artist/catalogs/CatalogItem";
+import Biography from "@/components/artist/Biography";
+
 
 export default function ArtistPage() {
 
@@ -54,12 +66,42 @@ export default function ArtistPage() {
         },
     ];
 
+    const [carouselItems, setCarouselItems] = useState<ArtModel[]>();
+
+    // fetch the 8,12,13 id arts from the database
+    useAsyncEffect(async (isMounted) => {
+        const ids = [8, 12, 13];
+        const items = await fetchCarouselItems(ids);
+
+        if (!isMounted()) return;
+        setCarouselItems(items);
+    }, []);
+
 
     return (
-        <div className='w-full max-w-[1000px] flex flex-col px-2 md:px-4 mx-auto mt-8 md:mt-12 lg:mt-24'>
-            {isViewerOpen && <PDFViewer pdfImages={currentPdfImages} isViewerOpen={isViewerOpen} closePdfViewer={closePdfViewer} />}
-            <Catalogs catalogs={catalogs} />
-            <Exhibitions />
+        <div className='w-full max-w-[1240px] flex flex-col px-2 md:px-4 mx-auto mt-8 md:mt-12 lg:mt-24 bg-background'>
+            <AboutArtist />
+            <Biography />
+            <MapSection />
+            <div className="w-full max-w-[1000px] mx-auto flex flex-col my-8 md:my-12 lg:my-24">
+                {isViewerOpen && <PDFViewer pdfImages={currentPdfImages} isViewerOpen={isViewerOpen} closePdfViewer={closePdfViewer} />}
+                <ArtistAccordions catalogs={catalogs} />
+            </div>
+            {carouselItems ? <Carousel items={carouselItems} /> : <></>}
         </div>
     );
 }
+
+interface ArtistAccordionsProps {
+    catalogs: CatalogModel[];
+}
+
+const ArtistAccordions = ({ catalogs }: ArtistAccordionsProps) => {
+
+    return (
+        <>
+            <Catalogs catalogs={catalogs} />
+            <Exhibitions />
+        </>
+    );
+};
