@@ -12,6 +12,9 @@ import { useFilter } from '@/providers/FilterProvider';
 // Services
 import { fetchArtCount, fetchArts } from '@/services/api';
 
+// Hooks
+import { useScroll } from './useScroll';
+
 /**
  * @description This hook is responsible for fetching the arts from the database based on the search term and the filter criteria
  * @returns {Object} - The error message, the search term, the number of searched arts, the loading state and the arts
@@ -21,6 +24,7 @@ export const useFetchArts = () => {
   // get the arts and the search term from the context
   const { arts, setArts, searchTerm } = useSearchNArt();
   const { filterCriteria } = useFilter();
+  const { scrollToTop } = useScroll();
 
   // debounce the search term, so it doesn't fire on every keystroke
   const debouncedSearchTerm = useDebounce(searchTerm, 400);
@@ -54,6 +58,7 @@ export const useFetchArts = () => {
 
   // refetch the arts when the search term changes
   useAsyncEffect(async () => {
+    scrollToTop();
     await fetchDataAsync();
   }, [debouncedSearchTerm, filterCriteria, currentPage]);
 
