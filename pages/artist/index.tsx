@@ -68,9 +68,9 @@ export default function ArtistPage() {
 
     const [carouselItems, setCarouselItems] = useState<ArtModel[]>();
 
-    // fetch the 8,12,13 id arts from the database
+    // fetch the 8,13,24,26 id arts from the database
     useAsyncEffect(async (isMounted) => {
-        const ids = [8, 12, 13];
+        const ids = [8, 13,24,26];
         const items = await fetchCarouselItems(ids);
 
         if (!isMounted()) return;
