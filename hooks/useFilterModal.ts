@@ -65,13 +65,13 @@ export const useFilterModal = () => {
     setSelectedTypes([]);
     setSelectedMaterials([]);
     setSelectedSizes([]);
-    setYearRange([1966, 1981]);
+    setYearRange([1966, 1984]);
     updateFilterCriteria({
       status: undefined,
       type: [],
       material: [],
       size: [],
-      yearRange: [1966, 1981],
+      yearRange: [1966, 1984],
     });
     setResetKey((prev) => prev + 1);
   };
