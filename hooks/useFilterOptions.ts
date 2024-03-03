@@ -20,7 +20,7 @@ export const useFilterOptions = () => {
   const [artMaterials, setArtMaterials] = useState<string[]>([]);
   const [artSizes, setArtSizes] = useState<string[]>([]);
   const [artStatus, setArtStatus] = useState<string[]>([]);
-  const [yearRange, setYearRange] = useState<number[]>([1966, 1981]);
+  const [yearRange, setYearRange] = useState<number[]>([1966, 1984]);
 
   const sizes = ['small', 'medium', 'large', 'extra large'];
   const availablity = ['available', 'sold'];

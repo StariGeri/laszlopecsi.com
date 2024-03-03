@@ -116,7 +116,7 @@ const FilterModal = ({ filterOptions }: FilterModalProps) => {
                                 onChange={handleYearChange}
                                 valueLabelDisplay="auto"
                                 min={1966}
-                                max={1981}
+                                max={1984}
                                 disableSwap
                             />
                         </div>

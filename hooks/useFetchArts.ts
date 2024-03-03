@@ -38,7 +38,7 @@ export const useFetchArts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  const itemsPerPage = 9; // number of arts to display per page
+  const itemsPerPage = 12; // number of arts to display per page
 
   useEffect(() => {
     if (
@@ -47,7 +47,7 @@ export const useFetchArts = () => {
       filterCriteria.material.length > 0 ||
       filterCriteria.size.length > 0 ||
       filterCriteria.yearRange[0] !== 1966 ||
-      filterCriteria.yearRange[1] !== 1981
+      filterCriteria.yearRange[1] !== 1984
     ) {
       setHasFilterSet(true);
     } else {
