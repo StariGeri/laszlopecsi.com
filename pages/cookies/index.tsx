@@ -1,5 +1,12 @@
 import Link from "next/link";
 
+
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Cookie Policy | Laszlo Pecsi Art Collection',
+};
+
 const CookiePage = () => {
 
     return (

@@ -9,6 +9,12 @@ import Cards from "@/components/collection/Cards";
 import FilterBar from "@/components/collection/FilterBar";
 import ScrollToTop from "@/components/collection/ScrollToTop";
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Art Collection | Laszlo Pecsi Art Collection',
+};
+
 export default function CollectionPage() {
 
     return (

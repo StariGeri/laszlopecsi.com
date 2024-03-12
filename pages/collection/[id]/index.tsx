@@ -7,6 +7,12 @@ import SingleArtDataSheet from '@/components/singleArtPage/SingleArtDataSheet';
 import SingleArtCTA from '@/components/singleArtPage/SingleArtCTA';
 import SingleArtLoadingSkeleton from '@/components/singleArtPage/loadingSkeleton/SingleArtLoadingSkeleton';
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Discover | Laszlo Pecsi Art Collection',
+};
+
 export default function ArtPage() {
 
     const { singleArt, loading } = useFetchSingleArt();

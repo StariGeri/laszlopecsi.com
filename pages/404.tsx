@@ -1,6 +1,12 @@
 // Components
 import Button from "@/components/shared/Button";
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Oops! 404 | Laszlo Pecsi Art Collection',
+};
+
 /**
  * @description - This is the 404 page component. This page is displayed when a user tries to access a page that doesn't exist.
  * @returns - The 404 page

@@ -30,7 +30,7 @@ const FilterBar = () => {
                         placeholder="Search"
                         value={searchTerm}
                         onChange={handleSearchTermChange}
-                        className="w-full h-10 md:h-12 pl-12 pr-4 border border-slate-900 rounded-lg focus:outline-none placeholder:font-body placeholder:text-lg placeholder:text-slate-900" />
+                        className="w-full h-10 md:h-12 pl-12 pr-4 border border-slate-900 rounded-lg focus:outline-none focus:border-primaryOrange placeholder:font-body placeholder:text-lg placeholder:text-slate-900" />
                     <HiMagnifyingGlass className="absolute top-2 md:top-3 left-3 w-6 h-6 text-slate-900" />
                 </div>
                 {/** Filter modal button */}

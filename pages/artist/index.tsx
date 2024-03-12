@@ -23,6 +23,12 @@ import { ArtModel } from "@/types/ArtModel";
 import { CatalogModel } from "@/components/artist/catalogs/CatalogItem";
 import Biography from "@/components/artist/Biography";
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'About the Artist | Laszlo Pecsi Art Collection',
+};
+
 
 export default function ArtistPage() {
 

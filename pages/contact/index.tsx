@@ -2,6 +2,11 @@ import ContactForm from "@/components/contact/ContactForm";
 import Divider from "@/components/contact/Divider";
 import OtherContacts from "@/components/contact/OtherContacts";
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Contact Us | Laszlo Pecsi Art Collection',
+};
 export default function ContactPage() {
 
     return (

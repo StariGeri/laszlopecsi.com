@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Laszlo Pecsi Art Collection',
+};
+
 const PrivacyPage = () => {
 
     return (
