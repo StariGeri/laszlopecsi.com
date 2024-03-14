@@ -6,7 +6,7 @@ const AboutArtist = () => {
             <div className="w-full flex flex-col">
                 <h1 className='w-fit font-header font-semibold text-[26px] md:text-[35px] lg:text-[40px] mb-2'>Laszlo Pecsi</h1>
                 <p className='font-body font-normal text-base md:text-[20px] lg:text-[24px] leading-snug'>
-                    Laszlo Pécsi played a clearly decisive and unquestionably important role in shaping 20th century Hungarian design as well as creating industrial designa and autonomous textile art. His professional erudition, creative force and the esteem of forerunners are evident during his whole artistic career.
+                    Laszlo Pecsi played a clearly decisive and unquestionably important role in shaping 20th century Hungarian design as well as creating industrial designa and autonomous textile art. His professional erudition, creative force and the esteem of forerunners are evident during his whole artistic career.
                 </p>
             </div>
             <div className="w-full flex items-center justify-center">

@@ -3,6 +3,7 @@
 // Dependencies
 import { useState } from "react";
 import useAsyncEffect from "use-async-effect";
+import Head from "next/head";
 
 // Constants
 import { exhibition_1983, hungarian_applied_arts, life_work_exhibition, memorial_exhibition } from "@/constants/PDFImages";
@@ -22,13 +23,6 @@ import { fetchCarouselItems } from "@/services/api";
 import { ArtModel } from "@/types/ArtModel";
 import { CatalogModel } from "@/components/artist/catalogs/CatalogItem";
 import Biography from "@/components/artist/Biography";
-
-import { Metadata } from 'next';
- 
-export const metadata: Metadata = {
-  title: 'About the Artist | Laszlo Pecsi Art Collection',
-};
-
 
 export default function ArtistPage() {
 
@@ -76,7 +70,7 @@ export default function ArtistPage() {
 
     // fetch the 8,13,24,26 id arts from the database
     useAsyncEffect(async (isMounted) => {
-        const ids = [8, 13,24,26];
+        const ids = [8, 13, 24, 26];
         const items = await fetchCarouselItems(ids);
 
         if (!isMounted()) return;
@@ -86,6 +80,12 @@ export default function ArtistPage() {
 
     return (
         <div className='w-full max-w-[1240px] flex flex-col px-2 md:px-4 mx-auto mt-8 md:mt-12 lg:mt-24 bg-background'>
+            <Head>
+                <title>About the Artist | Laszlo Pecsi Art Collection</title>
+                <meta name="description" content="Laszlo Pecsi played a clearly decisive and unquestionably important role in shaping 20th century Hungarian design as well as creating industrial designa and autonomous textile art. His professional erudition, creative force and the esteem of forerunners are evident during his whole artistic career." />
+                <meta property="og:image" content="/assets/images/artistabout.png" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <AboutArtist />
             <Biography />
             <MapSection />

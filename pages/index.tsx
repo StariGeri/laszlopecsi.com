@@ -1,5 +1,6 @@
 // Dependencies
 import React, { useState } from "react";
+import Head from "next/head";
 
 // Components
 import About from "@/components/home/About";
@@ -37,6 +38,13 @@ const Home = () => {
 
   return (
     <div className="overflow-hidden px-3 md:px-6 lg:px-10">
+      <Head>
+        <title>Home | Laszlo Pecsi Art Collection</title>
+        <meta name="description" content="A Journey Through Time and Texture: Exploring the Artistic Legacy of Laszlo Pecsi, a Renowned Textile Artist of the 20th Century, and the Exclusive Opportunity to Acquire his Masterpieces" />
+        <meta property="og:image" content="/assets/images/laszlopecsiabout.png" />
+        <meta name="keywords" content="Laszlo Pecsi, Art, Collection, Textile, Artist, 20th Century, Masterpieces" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Hero />
       <About />
       <MarqueeText direction="left" />

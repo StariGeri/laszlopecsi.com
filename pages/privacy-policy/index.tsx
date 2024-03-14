@@ -1,15 +1,14 @@
+import Head from "next/head";
 import Link from "next/link";
-
-import { Metadata } from 'next';
- 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | Laszlo Pecsi Art Collection',
-};
 
 const PrivacyPage = () => {
 
     return (
         <div className="overflow-hidden px-3 md:px-6 lg:px-10">
+            <Head>
+                <title>Privacy Policy | Laszlo Pecsi Art Collection</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <div className="w-full max-w-[1240px] lg:mx-auto my-8 md:my-12 lg:my-24 z-0 bg-background">
                 <h1 className="font-header font-semibold text-3xl lg:text-4xl text-center mb-4 md:mb-6 lg:mb-8">Privacy Policy</h1>
                 <p className="font-body text-base md:text-lg lg:text-xl mx-auto mb-4 md:mb-6 lg:mb-8">

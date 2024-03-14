@@ -1,11 +1,5 @@
 import Footer from '@/components/layout/footer/Footer';
 import Header from '@/components/layout/Header';
-import { Metadata } from 'next';
- 
-export const metadata: Metadata = {
-  title: 'Home | Laszlo Pecsi Art Collection',
-  description: 'A Journey Through Time and Texture: Exploring the Artistic Legacy of Laszlo Pecsi, a Renowned Textile Artist of the 20th Century, and the Exclusive Opportunity to Acquire his Masterpieces',
-};
 
 
 export interface LayoutProps {
