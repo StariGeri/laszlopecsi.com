@@ -8,6 +8,7 @@ const PrivacyPage = () => {
             <Head>
                 <title>Privacy Policy | Laszlo Pecsi Art Collection</title>
                 <link rel="icon" href="/favicon.ico" />
+                <meta name="robots" content="noindex,nofollow" />
             </Head>
             <div className="w-full max-w-[1240px] lg:mx-auto my-8 md:my-12 lg:my-24 z-0 bg-background">
                 <h1 className="font-header font-semibold text-3xl lg:text-4xl text-center mb-4 md:mb-6 lg:mb-8">Privacy Policy</h1>

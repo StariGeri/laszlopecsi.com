@@ -24,6 +24,7 @@ export default function ArtPage() {
                 <title>Discover Artpieces | Laszlo Pecsi Art Collection</title>
                 <meta name="description" content="Discover and take a deep dive into the artistic legacy of Laszlo Pecsi." />
                 <meta property="og:image" content="/assets/images/artistabout.png" />
+                <meta name="robots" content="noindex,nofollow" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className='flex flex-col-reverse md:flex-row items-center'>
